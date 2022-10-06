@@ -32,50 +32,97 @@ int rc_auto_loop_function_Controller1() {
   while(true) {
     if(RemoteControlCodeEnabled) {
       // check the ButtonL1/ButtonL2 status to control Motor1
-      if (Controller1.ButtonL1.pressing()) {
+      if (Controller1.Axis3.value() > 25) {
         Motor1.spin(forward);
+        Motor2.spin(forward);
+        Motor3.spin(forward);
+        Motor4.spin(forward);
+        Motor5.spin(forward);
+        Motor6.spin(forward);
         Controller1LeftShoulderControlMotorsStopped = false;
-      } else if (Controller1.ButtonL2.pressing()) {
+      } else if (Controller1.Axis3.value() < -25) {
         Motor1.spin(reverse);
+        Motor2.spin(reverse);
+        Motor3.spin(reverse);
+        Motor4.spin(reverse);
+        Motor5.spin(reverse);
+        Motor6.spin(reverse);
         Controller1LeftShoulderControlMotorsStopped = false;
-      } else if (!Controller1LeftShoulderControlMotorsStopped) {
+      } else if (Controller1.Axis3.value() > -10 && Controller1.Axis3.value() < 10) {
         Motor1.stop();
+        Motor2.stop();
+        Motor3.stop();
+        Motor4.stop();
+        Motor5.stop();
+        Motor6.stop();
         // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
         Controller1LeftShoulderControlMotorsStopped = true;
       }
+
+      if(Controller1.Axis4.value() > 25){
+        Motor1.spin(forward);
+        Motor2.spin(forward);
+        Motor3.spin(forward);
+        Motor4.spin(reverse);
+        Motor5.spin(reverse);
+        Motor6.spin(reverse);
+
+      }else if(Controller1.Axis4.value() < -25){
+        Motor4.spin(forward);
+        Motor5.spin(forward);
+        Motor6.spin(forward);
+        Motor1.spin(reverse);
+        Motor2.spin(reverse);
+        Motor3.spin(reverse);
+
+      }else if(Controller1.Axis4.value() > -10 && Controller1.Axis4.value() < 10){
+        Motor1.stop();
+        Motor2.stop();
+        Motor3.stop();
+        Motor4.stop();
+        Motor5.stop();
+        Motor6.stop();
+
+      }
+
+    
+
+
+
+
       // check the ButtonR1/ButtonR2 status to control Motor3
       if (Controller1.ButtonR1.pressing()) {
-        Motor3.spin(forward);
+        //Motor3.spin(forward);
         Controller1RightShoulderControlMotorsStopped = false;
       } else if (Controller1.ButtonR2.pressing()) {
-        Motor3.spin(reverse);
+        //Motor3.spin(reverse);
         Controller1RightShoulderControlMotorsStopped = false;
       } else if (!Controller1RightShoulderControlMotorsStopped) {
-        Motor3.stop();
+        //Motor3.stop();
         // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
         Controller1RightShoulderControlMotorsStopped = true;
       }
       // check the ButtonUp/ButtonDown status to control Motor2
       if (Controller1.ButtonUp.pressing()) {
-        Motor2.spin(forward);
+        //Motor2.spin(forward);
         Controller1UpDownButtonsControlMotorsStopped = false;
       } else if (Controller1.ButtonDown.pressing()) {
-        Motor2.spin(reverse);
+        //Motor2.spin(reverse);
         Controller1UpDownButtonsControlMotorsStopped = false;
       } else if (!Controller1UpDownButtonsControlMotorsStopped) {
-        Motor2.stop();
+        //Motor2.stop();
         // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
         Controller1UpDownButtonsControlMotorsStopped = true;
       }
       // check the ButtonX/ButtonB status to control Motor4
       if (Controller1.ButtonX.pressing()) {
-        Motor4.spin(forward);
+        //Motor4.spin(forward);
         Controller1XBButtonsControlMotorsStopped = false;
       } else if (Controller1.ButtonB.pressing()) {
-        Motor4.spin(reverse);
+        //Motor4.spin(reverse);
         Controller1XBButtonsControlMotorsStopped = false;
       } else if (!Controller1XBButtonsControlMotorsStopped) {
-        Motor4.stop();
+        //Motor4.stop();
         // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
         Controller1XBButtonsControlMotorsStopped = true;
       }

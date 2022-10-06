@@ -90,12 +90,78 @@ void usercontrol(void) {
     // Insert user code here. This is where you use the joystick values to
     // update your motors, etc.
     // ........................................................................
+  
+  /*
   Motor1.spin(vex::directionType::fwd, Controller1.Axis3.value(), vex::velocityUnits::pct);
   Motor2.spin(vex::directionType::fwd, Controller1.Axis3.value(), vex::velocityUnits::pct);
   Motor3.spin(vex::directionType::fwd, Controller1.Axis2.value(), vex::velocityUnits::pct);
   Motor4.spin(vex::directionType::fwd, Controller1.Axis2.value(), vex::velocityUnits::pct);
   Motor5.spin(vex::directionType::fwd, Controller1.Axis2.value(), vex::velocityUnits::pct);
   Motor6.spin(vex::directionType::fwd, Controller1.Axis2.value(), vex::velocityUnits::pct);
+*/
+
+
+      // check the ButtonL1/ButtonL2 status to control Motor1
+      if (Controller1.Axis3.value() > 25) {
+        Motor1.spin(forward);
+        Motor2.spin(forward);
+        Motor3.spin(forward);
+        Motor4.spin(forward);
+        Motor5.spin(forward);
+        Motor6.spin(forward);
+        //Controller1LeftShoulderControlMotorsStopped = false;
+      } else if (Controller1.Axis3.value() < -25) {
+        Motor1.spin(reverse);
+        Motor2.spin(reverse);
+        Motor3.spin(reverse);
+        Motor4.spin(reverse);
+        Motor5.spin(reverse);
+        Motor6.spin(reverse);
+        //Controller1LeftShoulderControlMotorsStopped = false;
+      } else if (Controller1.Axis3.value() > -10 && Controller1.Axis3.value() < 10) {
+        Motor1.stop();
+        Motor2.stop();
+        Motor3.stop();
+        Motor4.stop();
+        Motor5.stop();
+        Motor6.stop();
+        // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
+        //Controller1LeftShoulderControlMotorsStopped = true;
+      }
+
+      if(Controller1.Axis4.value() > 25){
+        Motor1.spin(forward);
+        Motor2.spin(forward);
+        Motor3.spin(forward);
+        Motor4.spin(reverse);
+        Motor5.spin(reverse);
+        Motor6.spin(reverse);
+
+      }else if(Controller1.Axis4.value() < -25){
+        Motor4.spin(forward);
+        Motor5.spin(forward);
+        Motor6.spin(forward);
+        Motor1.spin(reverse);
+        Motor2.spin(reverse);
+        Motor3.spin(reverse);
+
+      }else if(Controller1.Axis4.value() > -10 && Controller1.Axis4.value() < 10){
+        Motor1.stop();
+        Motor2.stop();
+        Motor3.stop();
+        Motor4.stop();
+        Motor5.stop();
+        Motor6.stop();
+
+      }
+
+    
+
+
+
+
+  
+
     wait(20, msec); // Sleep the task for a short amount of time to
                     // prevent wasted resources.
   }
