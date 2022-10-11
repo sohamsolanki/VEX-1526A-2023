@@ -102,23 +102,24 @@ void usercontrol(void) {
 
 
       // check the ButtonL1/ButtonL2 status to control Motor1
-      if (Controller1.Axis3.value() > 25) {
+      /*
+      if (Controller1.Axis1.value() > 25) {
         Motor1.spin(forward);
         Motor2.spin(forward);
         Motor3.spin(forward);
-        Motor4.spin(forward);
-        Motor5.spin(forward);
-        Motor6.spin(forward);
+        // Motor4.spin(forward);
+        // Motor5.spin(forward);
+        // Motor6.spin(forward);
         //Controller1LeftShoulderControlMotorsStopped = false;
-      } else if (Controller1.Axis3.value() < -25) {
-        Motor1.spin(reverse);
-        Motor2.spin(reverse);
-        Motor3.spin(reverse);
+      } else if (Controller1.Axis1.value() < -25) {
+        // Motor1.spin(reverse);
+        // Motor2.spin(reverse);
+        // Motor3.spin(reverse);
         Motor4.spin(reverse);
         Motor5.spin(reverse);
         Motor6.spin(reverse);
         //Controller1LeftShoulderControlMotorsStopped = false;
-      } else if (Controller1.Axis3.value() > -10 && Controller1.Axis3.value() < 10) {
+      } else if (Controller1.Axis1.value() > -10 && Controller1.Axis1.value() < 10) {
         Motor1.stop();
         Motor2.stop();
         Motor3.stop();
@@ -128,7 +129,8 @@ void usercontrol(void) {
         // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
         //Controller1LeftShoulderControlMotorsStopped = true;
       }
-
+    */
+  /*
       if(Controller1.Axis4.value() > 25){
         Motor1.spin(forward);
         Motor2.spin(forward);
@@ -154,7 +156,7 @@ void usercontrol(void) {
         Motor6.stop();
 
       }
-
+*/
     
 
 
