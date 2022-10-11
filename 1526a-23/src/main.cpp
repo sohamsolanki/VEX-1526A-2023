@@ -102,6 +102,12 @@ void usercontrol(void) {
 
 
       // check the ButtonL1/ButtonL2 status to control Motor1
+      if (Controller1.Axis3.value() > 25) {
+        driveL.spin(forward);
+      }
+      if(Controller1.Axis3.value() < -25) {
+        driveR.spin(reverse);
+      }
       /*
       if (Controller1.Axis1.value() > 25) {
         Motor1.spin(forward);

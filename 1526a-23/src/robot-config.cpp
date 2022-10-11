@@ -29,7 +29,7 @@ bool Controller1XBButtonsControlMotorsStopped = true;
 int rc_auto_loop_function_Controller1() {
   // process the controller input every 20 milliseconds
   // update the motors based on the input values
-  while(true) {
+ /* while(true) {
     if(RemoteControlCodeEnabled) {
       // check the ButtonL1/ButtonL2 status to control Motor1
       if (Controller1.Axis1.value() > 25) {
@@ -132,12 +132,14 @@ int rc_auto_loop_function_Controller1() {
   }
   return 0;
 }
+*/
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
  * 
  * This should be called at the start of your int main function.
  */
-void vexcodeInit( void ) {
+void vexcodeInit( void ){
   task rc_auto_loop_task_Controller1(rc_auto_loop_function_Controller1);
-}
+}}
+*/
