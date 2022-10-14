@@ -19,11 +19,17 @@ controller Controller1 = controller(primary);
 // VEXcode generated functions
 // define variable for remote controller enable/disable
 bool RemoteControlCodeEnabled = true;
+
 // define variables used for controlling motors based on controller inputs
 bool Controller1LeftShoulderControlMotorsStopped = true;
 bool Controller1RightShoulderControlMotorsStopped = true;
 bool Controller1UpDownButtonsControlMotorsStopped = true;
 bool Controller1XBButtonsControlMotorsStopped = true;
+
+// User generated functions - make code easier to debug
+motor_group driveL(Motor1, Motor2, Motor3);
+motor_group driveR(Motor4, Motor5, Motor6);
+drivetrain myDriveTrain(driveL, driveR);
 
 // define a task that will handle monitoring inputs from Controller1
 int rc_auto_loop_function_Controller1() {
@@ -31,101 +37,37 @@ int rc_auto_loop_function_Controller1() {
   // update the motors based on the input values
   while(true) {
     if(RemoteControlCodeEnabled) {
-      // check the ButtonL1/ButtonL2 status to control Motor4
 
-      //Seeing if we can make it faster
-      Motor1.setVelocity(500, rpm);
-      Motor2.setVelocity(500, rpm);
-      Motor3.setVelocity(500, rpm);
-      Motor4.setVelocity(500, rpm);
-      Motor5.setVelocity(500, rpm);
-      Motor6.setVelocity(500, rpm);
+      // changing RPM of motors
+      driveL.setVelocity(500, rpm);
+      driveR.setVelocity(500, rpm);
            
-   
+      // CONTROLS - LEFT JOYSTICK
       if (Controller1.Axis3.value() <= -20) {
-
-   Motor4.spin(reverse);
-   Motor5.spin(reverse);
-   Motor6.spin(reverse);
+        driveR.spin(reverse);
         Controller1LeftShoulderControlMotorsStopped = false;
+
       } else if (Controller1.Axis3.value() >= 20) {
-
-   Motor4.spin(forward);
-   Motor5.spin(forward);
-   Motor6.spin(forward);
+        driveR.spin(forward);
         Controller1LeftShoulderControlMotorsStopped = false;
-      } else {
 
-        Motor4.stop();
-        Motor5.stop();
-        Motor6.stop();
-        // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
+      } else {
+        driveR.stop();
         Controller1LeftShoulderControlMotorsStopped = true;
       }
       
-      
+      // CONTROLS - RIGHT JOYSTICK
        if (Controller1.Axis2.value() <= -20) {
-        Motor1.spin(forward);
-   Motor2.spin(forward);
-   Motor3.spin(forward);
-
+        driveL.spin(forward);
         Controller1LeftShoulderControlMotorsStopped = false;
+
       } else if (Controller1.Axis2.value() >= 20) {
-        Motor1.spin(reverse);
-   Motor2.spin(reverse);
-   Motor3.spin(reverse);
-
+        driveL.spin(reverse);
         Controller1LeftShoulderControlMotorsStopped = false;
+
       } else {
-        Motor1.stop();
-        Motor2.stop();
-        Motor3.stop();
-
-        // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
+        driveL.stop();
         Controller1LeftShoulderControlMotorsStopped = true;
-      }
-      
-
-
-      
-      
-
-
-      // check the ButtonR1/ButtonR2 status to control Motor3
-      if (Controller1.ButtonR1.pressing()) {
-        Motor3.spin(forward);
-        Controller1RightShoulderControlMotorsStopped = false;
-      } else if (Controller1.ButtonR2.pressing()) {
-        Motor3.spin(reverse);
-        Controller1RightShoulderControlMotorsStopped = false;
-      } else if (!Controller1RightShoulderControlMotorsStopped) {
-        Motor3.stop();
-        // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
-        Controller1RightShoulderControlMotorsStopped = true;
-      }
-      // check the ButtonUp/ButtonDown status to control Motor2
-      if (Controller1.ButtonUp.pressing()) {
-        Motor2.spin(forward);
-        Controller1UpDownButtonsControlMotorsStopped = false;
-      } else if (Controller1.ButtonDown.pressing()) {
-        Motor2.spin(reverse);
-        Controller1UpDownButtonsControlMotorsStopped = false;
-      } else if (!Controller1UpDownButtonsControlMotorsStopped) {
-        Motor2.stop();
-        // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
-        Controller1UpDownButtonsControlMotorsStopped = true;
-      }
-      // check the ButtonX/ButtonB status to control Motor1
-      if (Controller1.ButtonX.pressing()) {
-        Motor1.spin(forward);
-        Controller1XBButtonsControlMotorsStopped = false;
-      } else if (Controller1.ButtonB.pressing()) {
-        Motor1.spin(reverse);
-        Controller1XBButtonsControlMotorsStopped = false;
-      } else if (!Controller1XBButtonsControlMotorsStopped) {
-        Motor1.stop();
-        // set the toggle so that we don't constantly tell the motor to stop when the buttons are released
-        Controller1XBButtonsControlMotorsStopped = true;
       }
     }
     // wait before repeating the process
@@ -139,6 +81,7 @@ int rc_auto_loop_function_Controller1() {
  * 
  * This should be called at the start of your int main function.
  */
+ 
 void vexcodeInit( void ) {
   task rc_auto_loop_task_Controller1(rc_auto_loop_function_Controller1);
 }
