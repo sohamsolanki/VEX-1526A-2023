@@ -57,11 +57,11 @@ int rc_auto_loop_function_Controller1() {
       }
       
       // CONTROLS - RIGHT JOYSTICK
-       if (Controller1.Axis2.value() <= -20) {
+       if (Controller1.Axis3.value() <= -20) {
         driveL.spin(forward);
         Controller1LeftShoulderControlMotorsStopped = false;
 
-      } else if (Controller1.Axis2.value() >= 20) {
+      } else if (Controller1.Axis3.value() >= 20) {
         driveL.spin(reverse);
         Controller1LeftShoulderControlMotorsStopped = false;
 
