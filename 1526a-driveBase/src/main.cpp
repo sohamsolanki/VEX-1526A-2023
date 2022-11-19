@@ -1,28 +1,19 @@
+@@ -1,8 +1,8 @@
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
+/*    Author:       C:\Users\BRWNinc                                          */
+/*    Created:      Tue Oct 11 2022                                           */
 /*    Author:       Soham Solanki and Raiyan Hasan                            */
 /*    Created:      Tuesday, October 11, 2022                                  */
 /*    Description:  V5 project                                                */
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
-
-// ---- START VEXCODE CONFIGURED DEVICES ----
-// Robot Configuration:
-// [Name]               [Type]        [Port(s)]
-// Motor1               motor         1               
-// Motor2               motor         2               
-// Motor3               motor         3               
-// Motor4               motor         4               
-// Motor5               motor         5               
-// Motor6               motor         6               
-// Controller1          controller                    
-// ---- END VEXCODE CONFIGURED DEVICES ----
-
-#include "vex.h"
+@ -23,12 +23,92 @@
 
 using namespace vex;
 
+int main() {
 // A global instance of competition
 competition Competition;
 
@@ -67,8 +58,7 @@ void autonomous(void) {
   
   
 }
-
-/*---------------------------------------------------------------------------*/
+s/*---------------------------------------------------------------------------*/
 /*                                                                           */
 /*                              User Control Task                            */
 /*                                                                           */
@@ -111,7 +101,6 @@ int main() {
     wait(100, msec);
   }
 }
-
 
 
 
