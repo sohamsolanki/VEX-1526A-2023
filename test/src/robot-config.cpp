@@ -18,6 +18,9 @@ motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB);
 drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295, 40, mm, 1);
 motor Motor7 = motor(PORT7, ratio18_1, false);
 motor Motor8 = motor(PORT8, ratio18_1, false);
+motor Motor2 = motor(PORT2, ratio18_1, false);
+motor Motor5 = motor(PORT5, ratio18_1, false);
+
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
@@ -77,17 +80,46 @@ int rc_auto_loop_function_Controller1() {
       }
     }
 
+// Flywheel code
+    bool buttonPressed = false;
+    Motor7.setVelocity(200, rpm);
+    Motor8.setVelocity(200, rpm);
 
-    Motor7.setVelocity(400, rpm);
-    Motor8.setVelocity(400, rpm);
     if (Controller1.ButtonR1.pressing()) {
-        Motor7.spin(forward);
-        Motor8.spin(reverse);
+        buttonPressed = true;
       }
-      if (Controller1.ButtonR2.pressing()) {
-        Motor7.stop();
-        Motor8.stop();
+   
+      
+    if (Controller1.ButtonR2.pressing()) {
+        buttonPressed = false;
       }
+
+     if(buttonPressed == true){
+      Motor7.spin(forward);
+      Motor8.spin(reverse);
+    }else{
+      Motor7.stop();
+      Motor8.stop();
+    }
+
+// Intake code
+bool LbuttonPressed = false;
+if (Controller1.ButtonL1.pressing()) {
+        LbuttonPressed = true;
+      }
+   
+      
+    if (Controller1.ButtonL2.pressing()) {
+        LbuttonPressed = false;
+      }
+
+     if(LbuttonPressed == true){
+      Motor2.spin(forward);
+      Motor5.spin(forward);
+    }else{
+      Motor2.stop();
+      Motor5.stop();
+    }
 
     // wait before repeating the process
     wait(20, msec);
