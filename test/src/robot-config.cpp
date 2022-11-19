@@ -103,22 +103,41 @@ int rc_auto_loop_function_Controller1() {
     }
 
 // Intake code
+
 bool LbuttonPressed = false;
-if (Controller1.ButtonL1.pressing()) {
-        LbuttonPressed = true;
+Motor2.setVelocity(200, rpm);
+Motor5.setVelocity(200, rpm);
+    if (Controller1.ButtonL1.pressing()) {
+        if(LbuttonPressed == true){
+          LbuttonPressed = false;
+        }else{
+          LbuttonPressed = true;
+        }
       }
+
+
    
-      
+      /*
     if (Controller1.ButtonL2.pressing()) {
         LbuttonPressed = false;
       }
 
+      */
+
      if(LbuttonPressed == true){
+      Motor5.spin(reverse);
       Motor2.spin(forward);
-      Motor5.spin(forward);
     }else{
-      Motor2.stop();
       Motor5.stop();
+      Motor2.stop();
+    }
+
+    if(Controller1.ButtonX.pressing()){
+        Brain.Screen.print("Start Autonomous");
+        Drivetrain.setDriveVelocity(500, rpm);
+        Drivetrain.driveFor(reverse, 279.4, mm);
+        Drivetrain.turnFor(-90, degrees);
+        Drivetrain.driveFor(reverse, 1168.4, mm);
     }
 
     // wait before repeating the process
