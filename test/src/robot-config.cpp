@@ -47,6 +47,7 @@ int rc_auto_loop_function_Controller1() {
         if (DrivetrainLNeedsToBeStopped_Controller1) {
           // stop the left drive motor
           LeftDriveSmart.stop();
+          Motor2.stop();
           // tell the code that the left motor has been stopped
           DrivetrainLNeedsToBeStopped_Controller1 = false;
         }
@@ -60,6 +61,7 @@ int rc_auto_loop_function_Controller1() {
         if (DrivetrainRNeedsToBeStopped_Controller1) {
           // stop the right drive motor
           RightDriveSmart.stop();
+          Motor5.stop();
           // tell the code that the right motor has been stopped
           DrivetrainRNeedsToBeStopped_Controller1 = false;
         }
@@ -72,11 +74,13 @@ int rc_auto_loop_function_Controller1() {
       if (DrivetrainLNeedsToBeStopped_Controller1) {
         LeftDriveSmart.setVelocity(drivetrainLeftSideSpeed, percent);
         LeftDriveSmart.spin(forward);
+        Motor2.spin(reverse);
       }
       // only tell the right drive motor to spin if the values are not in the deadband range
       if (DrivetrainRNeedsToBeStopped_Controller1) {
         RightDriveSmart.setVelocity(drivetrainRightSideSpeed, percent);
         RightDriveSmart.spin(forward);
+        Motor5.spin(reverse);
       }
     }
 
@@ -104,6 +108,7 @@ int rc_auto_loop_function_Controller1() {
 
 // Intake code
 
+/*
 bool LbuttonPressed = false;
 Motor2.setVelocity(200, rpm);
 Motor5.setVelocity(200, rpm);
@@ -115,7 +120,7 @@ Motor5.setVelocity(200, rpm);
         }
       }
 
-
+*/
    
       /*
     if (Controller1.ButtonL2.pressing()) {
@@ -123,6 +128,7 @@ Motor5.setVelocity(200, rpm);
       }
 
       */
+      /*
 
      if(LbuttonPressed == true){
       Motor5.spin(reverse);
@@ -131,6 +137,8 @@ Motor5.setVelocity(200, rpm);
       Motor5.stop();
       Motor2.stop();
     }
+
+    */
 
     if(Controller1.ButtonX.pressing()){
         Brain.Screen.print("Start Autonomous");
