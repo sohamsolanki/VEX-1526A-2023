@@ -63,6 +63,7 @@ void autonomous(void) {
   Drivetrain.driveFor(reverse, 279.4, mm);
   Drivetrain.turnFor(-90, degrees);
   Drivetrain.driveFor(reverse, 1168.4, mm);
+  Drivetrain.driveFor(forward, 762, mm);
   
 }
 
