@@ -57,7 +57,6 @@ void pre_auton(void) {
 /*---------------------------------------------------------------------------*/
 
 void autonomous(void) {
-  
   Brain.Screen.print("Start Autonomous");
   Drivetrain.setDriveVelocity(500, rpm);
   Drivetrain.driveFor(reverse, 279.4, mm);
