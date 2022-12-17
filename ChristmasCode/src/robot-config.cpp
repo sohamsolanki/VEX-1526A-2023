@@ -40,7 +40,7 @@ int rc_auto_loop_function_Controller1() {
       // left = Axis3 + Axis1
       // right = Axis3 - Axis1
       int drivetrainLeftSideSpeed = Controller1.Axis3.position() + Controller1.Axis1.position();
-      int drivetrainRightSideSpeed = Controller1.Axis3.position() * .67 - Controller1.Axis1.position() * .67;
+      int drivetrainRightSideSpeed = Controller1.Axis3.position() - Controller1.Axis1.position();
       
       // check if the value is inside of the deadband range
       if (drivetrainLeftSideSpeed < 5 && drivetrainLeftSideSpeed > -5) {
