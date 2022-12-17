@@ -106,45 +106,52 @@ int rc_auto_loop_function_Controller1() {
 // Intake code
 
 
-bool LbuttonPressed = false;
-Motor2.setVelocity(200, rpm);
-Motor5.setVelocity(200, rpm);
-    if (Controller1.ButtonL1.pressing()) {
-        if(LbuttonPressed == true){
-          LbuttonPressed = false;
+bool L1buttonPressed = false;
+bool L2buttonPressed = false;
+Motor2.setVelocity(300, rpm);
+Motor5.setVelocity(300, rpm);
+     if (Controller1.ButtonL1.pressing()) {
+        if(L1buttonPressed == true){
+          L1buttonPressed = false;
         }else{
-          LbuttonPressed = true;
+          L1buttonPressed = true;
         }
       }
 
-
-   
-      
-    if (Controller1.ButtonL2.pressing()) {
-        LbuttonPressed = false;
+      if (Controller1.ButtonL2.pressing()) {
+        if(L2buttonPressed == true) {
+          L2buttonPressed = false;
+        } else {
+          L2buttonPressed = true;
+        }
       }
-
-    
-
-      
-
-     if(LbuttonPressed == true){
-      Motor5.spin(reverse);
-      Motor2.spin(forward);
-    }else{
+  
+    if (L2buttonPressed == true) {
+      Motor5.spin(forward);
+      Motor2.spin(reverse);
+    } else {
       Motor5.stop();
       Motor2.stop();
     }
 
-    
+     if(L1buttonPressed == true){
+      Motor5.spin(reverse);
+      Motor2.spin(forward);
+    }
 
-    if(Controller1.ButtonX.pressing()){
+   /* if(Controller1.ButtonX.pressing()){
         Brain.Screen.print("Start Autonomous");
         Drivetrain.setDriveVelocity(500, rpm);
         Drivetrain.driveFor(reverse, 279.4, mm);
         Drivetrain.turnFor(-90, degrees);
         Drivetrain.driveFor(reverse, 1168.4, mm);
+    } */
+
+    if(Controller1.ButtonX.pressing ()){
+      
     }
+
+
 
     // wait before repeating the process
     wait(20, msec);
