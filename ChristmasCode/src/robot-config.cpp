@@ -20,6 +20,7 @@ motor Motor7 = motor(PORT7, ratio18_1, false);
 motor Motor8 = motor(PORT8, ratio18_1, false);
 motor Motor2 = motor(PORT4, ratio18_1, true);
 motor Motor5 = motor(PORT5, ratio18_1, false);
+limit Limit1 = limit(Brain.ThreeWirePort.C);
 
 
 
@@ -82,30 +83,19 @@ int rc_auto_loop_function_Controller1() {
     }
     
 // Flywheel code
-    bool buttonPressed = false;
-    Motor7.setVelocity(200, rpm);
-    Motor8.setVelocity(200, rpm);
+    Motor7.setVelocity(300, rpm);
+    Motor8.setVelocity(300, rpm);
 
-    if (Controller1.ButtonR1.pressing()) {
-        buttonPressed = true;
-      }
-   
-      
-    if (Controller1.ButtonR2.pressing()) {
-        buttonPressed = false;
-      }
-
-     if(buttonPressed == true){
+     if(Controller1.ButtonR1.pressing()){
       Motor7.spin(forward);
       Motor8.spin(reverse);
-    }else{
-      Motor7.stop();
-      Motor8.stop();
-    }
+     }
+     if(Controller1.ButtonR2.pressing()){
+       Motor7.stop();
+       Motor8.stop();
+     }
 
 // Intake code
-
-
 bool L1buttonPressed = false;
 bool L2buttonPressed = false;
 Motor2.setVelocity(300, rpm);
@@ -139,6 +129,10 @@ Motor5.setVelocity(300, rpm);
       Motor2.spin(forward);
     }
 
+    if(Limit1.pressing()) {
+      Motor7.spin(forward);
+    }
+
    /* if(Controller1.ButtonX.pressing()){
         Brain.Screen.print("Start Autonomous");
         Drivetrain.setDriveVelocity(500, rpm);
@@ -150,8 +144,6 @@ Motor5.setVelocity(300, rpm);
     if(Controller1.ButtonX.pressing ()){
       
     }
-
-
 
     // wait before repeating the process
     wait(20, msec);
