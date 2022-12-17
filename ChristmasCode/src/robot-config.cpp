@@ -8,7 +8,10 @@ using code = vision::code;
 brain  Brain;
 
 // VEXcode device constructors
+
 controller Controller1 = controller(primary);
+limit Limit1 = limit(Brain.ThreeWirePort.C);
+
 motor leftMotorA = motor(PORT1, ratio18_1, true);
 motor leftMotorB = motor(PORT2, ratio18_1, true);
 motor_group LeftDriveSmart = motor_group(leftMotorA, leftMotorB);
@@ -16,13 +19,10 @@ motor rightMotorA = motor(PORT9, ratio18_1, false);
 motor rightMotorB = motor(PORT10, ratio18_1, false);
 motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB);
 drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295, 40, mm, 1);
+
+motor Motor4 = motor(PORT4, ratio18_1, true);
 motor Motor7 = motor(PORT7, ratio18_1, false);
 motor Motor8 = motor(PORT8, ratio18_1, false);
-motor Motor2 = motor(PORT4, ratio18_1, true);
-motor Motor5 = motor(PORT5, ratio18_1, false);
-limit Limit1 = limit(Brain.ThreeWirePort.C);
-
-
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
@@ -84,22 +84,17 @@ int rc_auto_loop_function_Controller1() {
     
 // Flywheel code
     Motor7.setVelocity(300, rpm);
-    Motor8.setVelocity(300, rpm);
-
      if(Controller1.ButtonR1.pressing()){
       Motor7.spin(forward);
-      Motor8.spin(reverse);
      }
      if(Controller1.ButtonR2.pressing()){
        Motor7.stop();
-       Motor8.stop();
      }
 
 // Intake code
 bool L1buttonPressed = false;
 bool L2buttonPressed = false;
-Motor2.setVelocity(300, rpm);
-Motor5.setVelocity(300, rpm);
+Motor4.setVelocity(300, rpm);
      if (Controller1.ButtonL1.pressing()) {
         if(L1buttonPressed == true){
           L1buttonPressed = false;
@@ -117,33 +112,33 @@ Motor5.setVelocity(300, rpm);
       }
   
     if (L2buttonPressed == true) {
-      Motor5.spin(forward);
-      Motor2.spin(reverse);
+      Motor4.spin(reverse);
     } else {
-      Motor5.stop();
-      Motor2.stop();
+      Motor4.stop();
     }
 
      if(L1buttonPressed == true){
-      Motor5.spin(reverse);
-      Motor2.spin(forward);
+      Motor4.spin(forward);
     }
 
+  // Limit switch code
     if(Limit1.pressing()) {
       Motor7.spin(forward);
     }
 
-   /* if(Controller1.ButtonX.pressing()){
-        Brain.Screen.print("Start Autonomous");
-        Drivetrain.setDriveVelocity(500, rpm);
-        Drivetrain.driveFor(reverse, 279.4, mm);
-        Drivetrain.turnFor(-90, degrees);
-        Drivetrain.driveFor(reverse, 1168.4, mm);
-    } */
-
-    if(Controller1.ButtonX.pressing ()){
-      
+    // Indexer code
+    if (Controller1.ButtonX.pressing()){
+      Motor8.rotateFor(90, rotationUnits::deg);
+      wait(2, seconds);
+      Motor8.rotateFor(-90, rotationUnits::deg);
+      wait (3, seconds);
+      Motor7.stop();
     }
+
+  if (Limit1.pressing()) {
+    Motor7.spin(forward);
+  }
+
 
     // wait before repeating the process
     wait(20, msec);

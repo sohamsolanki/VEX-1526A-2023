@@ -57,13 +57,17 @@ void pre_auton(void) {
 /*---------------------------------------------------------------------------*/
 
 void autonomous(void) {
-  Brain.Screen.print("Start Autonomous");
+  /*Brain.Screen.print("Start Autonomous");
   Drivetrain.setDriveVelocity(500, rpm);
   Drivetrain.driveFor(reverse, 279.4, mm);
   Drivetrain.turnFor(-90, degrees);
   Drivetrain.driveFor(reverse, 1168.4, mm);
   Drivetrain.driveFor(forward, 762, mm);
-  
+
+  Brain.Screen.print("1526A Autonomous");
+  Drivetrain.setDriveVelocity(500, rpm);
+  Drivetrain.driveFor(reverse, 152.4, mm);
+  Drivetrain.driveFor(forward, 304.8, mm);*/
 }
 
 /*---------------------------------------------------------------------------*/
