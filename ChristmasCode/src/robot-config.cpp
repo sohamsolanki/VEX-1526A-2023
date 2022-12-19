@@ -92,6 +92,7 @@ int rc_auto_loop_function_Controller1() {
        Motor7.stop();
      }
 
+// Controller Display code
   Controller1.Screen.clearScreen();
   Controller1.Screen.setCursor(1, 1);
   // wait(6, seconds);
