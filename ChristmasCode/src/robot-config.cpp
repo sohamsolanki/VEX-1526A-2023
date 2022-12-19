@@ -81,9 +81,14 @@ int rc_auto_loop_function_Controller1() {
         RightDriveSmart.spin(forward);
       }
     }
+  // Controller display velocity code
+  Controller1.Screen.clearScreen();
+  Controller1.Screen.setCursor(1,1);
+  wait(5.5, seconds);
+  Controller1.Screen.print("Flywheel READY");
     
 // Flywheel code
-    Motor7.setVelocity(300, rpm);
+    Motor7.setVelocity(100, pct);
      if(Controller1.ButtonR1.pressing()){
       Motor7.spin(forward);
      }
@@ -129,9 +134,9 @@ Motor4.setVelocity(300, rpm);
     // Indexer code
     if (Controller1.ButtonX.pressing()){
       Motor8.rotateFor(90, rotationUnits::deg);
-      wait(2, seconds);
+      //wait(2, seconds);
       Motor8.rotateFor(-90, rotationUnits::deg);
-      wait (3, seconds);
+      wait (1, seconds);
       Motor7.stop();
     }
 
@@ -141,7 +146,7 @@ Motor4.setVelocity(300, rpm);
 
 
     // wait before repeating the process
-    wait(20, msec);
+    wait(5, msec);
   }
   return 0;
 }
