@@ -17,3 +17,8 @@ ChristmasCode/build/src/main.o
 ChristmasCode/build/ChristmasCode.elf
 ChristmasCode/build/ChristmasCode.bin
 ChristmasCode/build/ChristmasCode.map
+ChristmasCode/compile_commands.json
+ChristmasCode/build/src/robot-config.o
+ChristmasCode/build/ChristmasCode.map
+ChristmasCode/build/ChristmasCode.elf
+ChristmasCode/build/ChristmasCode.bin
