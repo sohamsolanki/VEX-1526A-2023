@@ -95,7 +95,7 @@ int rc_auto_loop_function_Controller1() {
   Controller1.Screen.clearScreen();
   Controller1.Screen.setCursor(1, 1);
   // wait(6, seconds);
-  if (Motor7.velocity(pct) > 80) {
+  if (Motor7.velocity(pct) > 70) {
     Controller1.Screen.clearScreen();
     Controller1.Screen.setCursor(1, 1);
     Controller1.Screen.print("Flywheel ready");
