@@ -100,11 +100,13 @@ int rc_auto_loop_function_Controller1() {
     Controller1.Screen.clearScreen();
     Controller1.Screen.setCursor(1, 1);
     Controller1.Screen.print("Flywheel READY");
+    Controller1.Screen.newLine();
     Controller1.Screen.print("RPM %f", Motor7.velocity(rpm));
   } else {
     Controller1.Screen.clearScreen();
     Controller1.Screen.setCursor(1, 1);
     Controller1.Screen.print("Flywheel NOT ready");
+    Controller1.Screen.newLine();
     Controller1.Screen.print("RPM %f", Motor7.velocity(rpm));
   }
 
