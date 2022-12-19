@@ -95,7 +95,10 @@ int rc_auto_loop_function_Controller1() {
   Controller1.Screen.clearScreen();
   Controller1.Screen.setCursor(1, 1);
   // wait(6, seconds);
-  Controller1.Screen.print("Flywheel ready", Motor7.velocity(percent) >= 100);
+  if (Motor7.velocity(percent) >= 100) {
+    Controller1.Screen.print("Flywheel ready");
+  }
+
   // Controller1.Screen.print("Flywheel %f", Motor7.velocity(percent));
     
 // Intake code
