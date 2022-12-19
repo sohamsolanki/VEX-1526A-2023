@@ -114,7 +114,10 @@ int rc_auto_loop_function_Controller1() {
     Controller1.Screen.print("Battery %.2f%% full", (Brain.Battery.voltage()/Brain.Battery.capacity())*100);
   }
 
-  // Controller1.Screen.print("Flywheel %f", Motor7.velocity(percent));
+// Controller vibrate code
+if (Motor7.velocity(pct) > 70) {
+  Controller1.rumble(". - . -");
+}
     
 // Intake code
 bool L1buttonPressed = false;
