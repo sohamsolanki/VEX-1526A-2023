@@ -81,11 +81,9 @@ int rc_auto_loop_function_Controller1() {
         RightDriveSmart.spin(forward);
       }
     }
-  /* Controller display velocity code
-  Controller1.Screen.clearScreen();
-  Controller1.Screen.setCursor(1,1);
-  wait(5.5, seconds);
-  Controller1.Screen.print("Flywheel READY");*/
+  
+  Controller1.Screen.setCursor(1, 1);
+  Controller1.Screen.print("Flywheel %f", Motor7.velocity(percent));
     
 // Flywheel code
     Motor7.setVelocity(100, pct);
@@ -95,7 +93,6 @@ int rc_auto_loop_function_Controller1() {
      if(Controller1.ButtonR2.pressing()){
        Motor7.stop();
      }
-
 // Intake code
 bool L1buttonPressed = false;
 bool L2buttonPressed = false;
