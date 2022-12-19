@@ -82,6 +82,12 @@ int rc_auto_loop_function_Controller1() {
       }
     }
     
+// Controller display velocity code
+  Controller1.Screen.clearScreen();
+  Controller1.Screen.setCursor(1,1);
+  wait(5.5, seconds);
+  Controller1.Screen.print("Flywheel READY");
+
 // Flywheel code
     Motor7.setVelocity(300, rpm);
      if(Controller1.ButtonR1.pressing()){
