@@ -102,12 +102,16 @@ int rc_auto_loop_function_Controller1() {
     Controller1.Screen.print("Flywheel READY");
     Controller1.Screen.newLine();
     Controller1.Screen.print("RPM %f", Motor7.velocity(rpm));
+    Controller1.Screen.newLine();
+    Controller1.Screen.print("Battery %.2f%% full", (Brain.Battery.voltage()/Brain.Battery.capacity())*100);
   } else {
     Controller1.Screen.clearScreen();
     Controller1.Screen.setCursor(1, 1);
     Controller1.Screen.print("Flywheel NOT ready");
     Controller1.Screen.newLine();
     Controller1.Screen.print("RPM %f", Motor7.velocity(rpm));
+    Controller1.Screen.newLine();
+    Controller1.Screen.print("Battery %.2f%% full", (Brain.Battery.voltage()/Brain.Battery.capacity())*100);
   }
 
   // Controller1.Screen.print("Flywheel %f", Motor7.velocity(percent));
