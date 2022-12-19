@@ -99,7 +99,7 @@ int rc_auto_loop_function_Controller1() {
   if (Motor7.velocity(pct) > 70) {
     Controller1.Screen.clearScreen();
     Controller1.Screen.setCursor(1, 1);
-    Controller1.Screen.print("Flywheel READ, RPM %f", Motor7.velocity(rpm));
+    Controller1.Screen.print("Flywheel READY, RPM %f", Motor7.velocity(rpm));
   } else {
     Controller1.Screen.clearScreen();
     Controller1.Screen.setCursor(1, 1);
