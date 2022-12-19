@@ -116,7 +116,7 @@ int rc_auto_loop_function_Controller1() {
 
 // Controller vibrate code
 if (Motor7.velocity(pct) > 70) {
-  Controller1.rumble(". - . -");
+  Controller1.rumble("--");
 }
     
 // Intake code
