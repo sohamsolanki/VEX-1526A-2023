@@ -82,9 +82,7 @@ int rc_auto_loop_function_Controller1() {
       }
     }
   
-  Controller1.Screen.setCursor(1, 1);
-  Controller1.Screen.print("Flywheel %f", Motor7.velocity(percent));
-    
+  
 // Flywheel code
     Motor7.setVelocity(100, pct);
      if(Controller1.ButtonR1.pressing()){
@@ -93,6 +91,11 @@ int rc_auto_loop_function_Controller1() {
      if(Controller1.ButtonR2.pressing()){
        Motor7.stop();
      }
+
+  Controller1.Screen.clearScreen();
+  Controller1.Screen.setCursor(1, 1);
+  Controller1.Screen.print("Flywheel %f", Motor7.velocity(percent));
+    
 // Intake code
 bool L1buttonPressed = false;
 bool L2buttonPressed = false;
