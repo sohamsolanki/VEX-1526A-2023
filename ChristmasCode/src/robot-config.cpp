@@ -81,6 +81,9 @@ int rc_auto_loop_function_Controller1() {
         RightDriveSmart.spin(forward);
       }
     }
+
+// Motor coast code
+Drivetrain.setStopping(brakeType::coast);
   
   
 // Flywheel code
@@ -103,7 +106,7 @@ int rc_auto_loop_function_Controller1() {
     Controller1.Screen.newLine();
     Controller1.Screen.print("RPM %f", Motor7.velocity(rpm));
     Controller1.Screen.newLine();
-    Controller1.Screen.print("Battery %.2f%% full", (Brain.Battery.voltage()/Brain.Battery.capacity())*100);
+    Controller1.Screen.print("Battery %.2f%% full", (100 - (Brain.Battery.voltage()/Brain.Battery.capacity())*100));
   } else {
     Controller1.Screen.clearScreen();
     Controller1.Screen.setCursor(1, 1);
@@ -166,8 +169,9 @@ Motor4.setVelocity(300, rpm);
   if (Limit1.pressing()) {
     Motor7.spin(forward);
   }
+
     // wait before repeating the process
-    wait(5, msec);
+    wait(1, msec);
   }
   return 0;
 }
