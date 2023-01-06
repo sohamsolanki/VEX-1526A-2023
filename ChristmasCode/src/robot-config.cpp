@@ -41,7 +41,19 @@ int rc_auto_loop_function_Controller1() {
       // left = Axis3 + Axis1
       // right = Axis3 - Axis1
       int drivetrainLeftSideSpeed = Controller1.Axis3.position() + Controller1.Axis1.position();
+     
+
       int drivetrainRightSideSpeed = Controller1.Axis3.position() - Controller1.Axis1.position();
+
+      //Below code is trying to decrease turning speed
+      /*
+      if(Controller1.Axis1.position() > 0 && Controller1.Axis3.position() > -5 && Controller1.Axis3.position() < 5){
+        drivetrainLeftSideSpeed = drivetrainLeftSideSpeed * 0.05;
+        }
+      if(Controller1.Axis1.position() < 0 && Controller1.Axis3.position() > -5 && Controller1.Axis3.position() < 5){
+        drivetrainRightSideSpeed = drivetrainRightSideSpeed * 0.05;
+        }
+        */
       
       // check if the value is inside of the deadband range
       if (drivetrainLeftSideSpeed < 5 && drivetrainLeftSideSpeed > -5) {
@@ -72,11 +84,13 @@ int rc_auto_loop_function_Controller1() {
       
       // only tell the left drive motor to spin if the values are not in the deadband range
       if (DrivetrainLNeedsToBeStopped_Controller1) {
+         
         LeftDriveSmart.setVelocity(drivetrainLeftSideSpeed, percent);
         LeftDriveSmart.spin(forward);
       }
       // only tell the right drive motor to spin if the values are not in the deadband range
       if (DrivetrainRNeedsToBeStopped_Controller1) {
+        
         RightDriveSmart.setVelocity(drivetrainRightSideSpeed, percent);
         RightDriveSmart.spin(forward);
       }
@@ -96,7 +110,7 @@ int rc_auto_loop_function_Controller1() {
   Controller1.Screen.clearScreen();
   Controller1.Screen.setCursor(1, 1);
   // wait(6, seconds);
-  if (Motor7.velocity(pct) > 70) {
+  if (Motor7.velocity(pct) > 80) {
     Controller1.Screen.clearScreen();
     Controller1.Screen.setCursor(1, 1);
     Controller1.Screen.print("Flywheel READY");
@@ -115,14 +129,14 @@ int rc_auto_loop_function_Controller1() {
   }
 
 // Controller vibrate code
-if (Motor7.velocity(pct) > 70) {
+if (Motor7.velocity(pct) > 80) {
   Controller1.rumble("--");
 }
     
 // Intake code
 bool L1buttonPressed = false;
 bool L2buttonPressed = false;
-Motor4.setVelocity(300, rpm);
+Motor4.setVelocity(150, rpm);
      if (Controller1.ButtonL1.pressing()) {
         if(L1buttonPressed == true){
           L1buttonPressed = false;
