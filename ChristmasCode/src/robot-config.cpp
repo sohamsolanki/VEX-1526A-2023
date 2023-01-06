@@ -20,9 +20,18 @@ motor rightMotorB = motor(PORT10, ratio18_1, false);
 motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB);
 drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295, 40, mm, 1);
 
+// intake
 motor Motor4 = motor(PORT4, ratio18_1, true);
+
+// flywheel motor #1
 motor Motor7 = motor(PORT7, ratio18_1, false);
+
+// indexer
 motor Motor8 = motor(PORT8, ratio18_1, false);
+
+// flywheel motor #2
+motor Motor9 = motor(PORT9, ratio18_1, false);
+
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
@@ -95,16 +104,27 @@ int rc_auto_loop_function_Controller1() {
         RightDriveSmart.spin(forward);
       }
     }
+
+// Motor coast code
+Drivetrain.setStopping(brakeType::coast);
   
   
-// Flywheel code
-    Motor7.setVelocity(100, pct);
-     if(Controller1.ButtonR1.pressing()){
-      Motor7.spin(forward);
-     }
-     if(Controller1.ButtonR2.pressing()){
-       Motor7.stop();
-     }
+// Flywheel #1 code
+Motor7.setVelocity(100, pct);
+  if(Controller1.ButtonR1.pressing()){
+  Motor7.spin(forward);
+  }
+  if(Controller1.ButtonR2.pressing()){
+  Motor7.stop();
+  }
+
+// Flywheel #2 code
+Motor9.setVelocity(100, pct);
+if(Controller1.ButtonDown.pressing()){
+  Motor9.rotateFor(90, rotationUnits::deg);
+  wait(1, sec);
+  Motor9.rotateFor(-90, rotationUnits::deg);
+}
 
 // Controller Display code
   Controller1.Screen.clearScreen();
@@ -117,7 +137,7 @@ int rc_auto_loop_function_Controller1() {
     Controller1.Screen.newLine();
     Controller1.Screen.print("RPM %f", Motor7.velocity(rpm));
     Controller1.Screen.newLine();
-    Controller1.Screen.print("Battery %.2f%% full", (Brain.Battery.voltage()/Brain.Battery.capacity())*100);
+    Controller1.Screen.print("Battery %.2f%% full", (100 - (Brain.Battery.voltage()/Brain.Battery.capacity())*100));
   } else {
     Controller1.Screen.clearScreen();
     Controller1.Screen.setCursor(1, 1);
@@ -180,8 +200,9 @@ Motor4.setVelocity(150, rpm);
   if (Limit1.pressing()) {
     Motor7.spin(forward);
   }
+
     // wait before repeating the process
-    wait(5, msec);
+    wait(1, msec);
   }
   return 0;
 }
