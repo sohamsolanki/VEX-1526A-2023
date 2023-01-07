@@ -21,13 +21,11 @@ motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB);
 drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295, 40, mm, 1);
 
 // intake
-motor Motor4 = motor(PORT4, ratio18_1, true);
+motor Motor4 = motor(PORT4, ratio18_1, false);
+motor Motor8 = motor(PORT8, ratio18_1, false);
 
 // flywheel motor #1
 motor Motor7 = motor(PORT7, ratio18_1, false);
-
-// indexer
-motor Motor8 = motor(PORT8, ratio18_1, false);
 
 // flywheel motor #2
 motor Motor9 = motor(PORT9, ratio18_1, false);
@@ -188,7 +186,7 @@ Motor4.setVelocity(150, rpm);
       Motor7.spin(forward);
     }
 
-    // Indexer code
+   /* // Indexer code
     if (Controller1.ButtonX.pressing()){
       Motor8.rotateFor(90, rotationUnits::deg);
       //wait(2, seconds);
@@ -196,7 +194,7 @@ Motor4.setVelocity(150, rpm);
       wait (1, seconds);
       Motor7.stop();
     }
-
+  */
   if (Limit1.pressing()) {
     Motor7.spin(forward);
   }
