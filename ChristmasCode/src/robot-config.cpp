@@ -22,7 +22,7 @@ drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295,
 
 // intake
 motor Motor4 = motor(PORT4, ratio18_1, false);
-motor Motor8 = motor(PORT8, ratio18_1, false);
+// motor Motor8 = motor(PORT8, ratio18_1, false);
 
 // flywheel motor #1
 motor Motor7 = motor(PORT7, ratio18_1, false);
