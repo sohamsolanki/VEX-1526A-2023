@@ -11,6 +11,7 @@ brain  Brain;
 
 controller Controller1 = controller(primary);
 limit Limit1 = limit(Brain.ThreeWirePort.C);
+pneumatics Piston1 = pneumatics(Brain.ThreeWirePort.H);
 
 motor leftMotorA = motor(PORT1, ratio18_1, true);
 motor leftMotorB = motor(PORT2, ratio18_1, true);
@@ -25,9 +26,9 @@ motor Motor4 = motor(PORT4, ratio18_1, false);
 // motor Motor8 = motor(PORT8, ratio18_1, false);
 
 // flywheel motor #1
-motor Motor7 = motor(PORT7, ratio18_1, false);
+motor Motor7 = motor(PORT7, ratio6_1, false);
 
-// flywheel motor #2
+// expansion motor #2
 motor Motor9 = motor(PORT9, ratio18_1, false);
 
 
@@ -105,7 +106,6 @@ int rc_auto_loop_function_Controller1() {
 
 // Motor coast code
 Drivetrain.setStopping(brakeType::coast);
-  
   
 // Flywheel #1 code
 Motor7.setVelocity(100, pct);
@@ -186,15 +186,15 @@ Motor4.setVelocity(150, rpm);
       Motor7.spin(forward);
     }
 
-   /* // Indexer code
+   // Piston code
     if (Controller1.ButtonX.pressing()){
-      Motor8.rotateFor(90, rotationUnits::deg);
-      //wait(2, seconds);
-      Motor8.rotateFor(-90, rotationUnits::deg);
+      Piston1.open();
+      wait(2, seconds);
+      Piston1.close();
       wait (1, seconds);
       Motor7.stop();
     }
-  */
+
   if (Limit1.pressing()) {
     Motor7.spin(forward);
   }
