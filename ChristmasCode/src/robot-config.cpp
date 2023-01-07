@@ -23,7 +23,9 @@ drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295,
 
 // intake
 motor Motor4 = motor(PORT4, ratio18_1, false);
-// motor Motor8 = motor(PORT8, ratio18_1, false);
+
+// string launcher
+motor Motor8 = motor(PORT8, ratio18_1, false);
 
 // flywheel motor #1
 motor Motor7 = motor(PORT7, ratio6_1, false);
@@ -199,6 +201,12 @@ Motor4.setVelocity(150, rpm);
     Motor7.spin(forward);
   }
 
+  // STRING LAUNCHER
+  if (Controller1.ButtonDown.pressing()) {
+    Motor8.rotateFor(90, rotationUnits::deg);
+    wait(1, seconds);
+    Motor8.rotateFor(-90, rotationUnits::deg);
+  }
     // wait before repeating the process
     wait(1, msec);
   }
