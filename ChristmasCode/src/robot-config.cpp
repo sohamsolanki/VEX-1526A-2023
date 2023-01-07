@@ -188,9 +188,9 @@ Motor4.setVelocity(150, rpm);
 
    // Piston code
     if (Controller1.ButtonX.pressing()){
-      Piston1.open();
-      wait(2, seconds);
       Piston1.close();
+      wait(2, seconds);
+      Piston1.open();
       wait (1, seconds);
       Motor7.stop();
     }
