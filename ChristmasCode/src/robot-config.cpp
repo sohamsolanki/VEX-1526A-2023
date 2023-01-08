@@ -204,11 +204,11 @@ Motor4.setVelocity(150, rpm);
 
   // STRING LAUNCHER
   if (Controller1.ButtonDown.pressing()) {
-    Motor8.rotateFor(90, rotationUnits::deg);
-    Motor3.rotateFor(-90, rotationUnits::deg);
-    wait(1, seconds);
     Motor8.rotateFor(-90, rotationUnits::deg);
     Motor3.rotateFor(90, rotationUnits::deg);
+    wait(1, seconds);
+    Motor8.rotateFor(90, rotationUnits::deg);
+    Motor3.rotateFor(-90, rotationUnits::deg);
   }
     // wait before repeating the process
     wait(1, msec);
