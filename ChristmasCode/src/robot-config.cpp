@@ -175,13 +175,13 @@ Motor4.setVelocity(150, rpm);
       }
   
     if (L2buttonPressed == true) {
-      Motor4.spin(reverse);
+      Motor4.spin(forward);
     } else {
       Motor4.stop();
     }
 
      if(L1buttonPressed == true){
-      Motor4.spin(forward);
+      Motor4.spin(reverse);
     }
 
   // Limit switch code
@@ -206,9 +206,9 @@ Motor4.setVelocity(150, rpm);
   if (Controller1.ButtonDown.pressing()) {
     Motor8.rotateFor(-90, rotationUnits::deg);
     Motor3.rotateFor(90, rotationUnits::deg);
-    wait(1, seconds);
-    Motor8.rotateFor(90, rotationUnits::deg);
-    Motor3.rotateFor(-90, rotationUnits::deg);
+   //  wait(1, seconds);
+    // Motor8.rotateFor(90, rotationUnits::deg);
+   //  Motor3.rotateFor(-90, rotationUnits::deg);
   }
     // wait before repeating the process
     wait(1, msec);
