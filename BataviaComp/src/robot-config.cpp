@@ -9,7 +9,7 @@ using code = vision::code;
 brain  Brain;
 
 // VEXcode device constructors
-
+competition Competition;
 controller Controller1 = controller(primary);
 limit Limit1 = limit(Brain.ThreeWirePort.C);
 pneumatics Piston1 = pneumatics(Brain.ThreeWirePort.H);
@@ -35,10 +35,18 @@ motor Motor7 = motor(PORT7, ratio6_1, false);
 // expansion motor #2
 motor Motor9 = motor(PORT9, ratio18_1, false);
 
+void pre_auton(void) {
+  // Initializing Robot Configuration. DO NOT REMOVE!
+  vexcodeInit();
+  
+  // All activities that occur before the competition starts
+  // Example: clearing encoders, setting servo positions, ...
+}
 void autonomous(void) {
   Drivetrain.setDriveVelocity(500, rpm);
   Drivetrain.driveFor(forward, 100, mm);
-  Motor4.rotateFor(1, seconds);
+  Motor4.rotateFor(3, seconds);
+  Drivetrain.driveFor(reverse, 100, mm);
 }
 
 // VEXcode generated functions
@@ -165,6 +173,7 @@ if(Controller1.ButtonLeft.pressing()) {
   Drivetrain.setDriveVelocity(500, rpm);
   Drivetrain.driveFor(forward, 100, mm);
   Motor4.rotateFor(1, seconds);
+  Drivetrain.driveFor(reverse, 200, mm);
 }
     
 // Intake code
@@ -227,6 +236,18 @@ Motor4.setVelocity(150, rpm);
     wait(1, msec);
   }
   return 0;
+}
+
+int main() {
+  // Set up callbacks for autonomous and driver control periods.
+  Competition.autonomous(autonomous);
+  // Run the pre-autonomous function.
+  pre_auton();
+
+  // Prevent main from exiting with an infinite loop.
+  while (true) {
+    wait(100, msec);
+  }
 }
 
 /**
