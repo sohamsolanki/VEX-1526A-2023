@@ -1,13 +1,22 @@
 /*----------------------------------------------------------------------------*/
 /*                                                                            */
 /*    Module:       main.cpp                                                  */
-/*    Author:       VEX                                                       */
-/*    Created:      Thu Sep 26 2019                                           */
-/*    Description:  Competition Template                                      */
+/*    Author:       Soham Solanki and Raiyan Hasan                            */
+/*    Created:      Tuesday, October 11, 2022                                  */
+/*    Description:  V5 project                                                */
 /*                                                                            */
 /*----------------------------------------------------------------------------*/
 
 // ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Motor1               motor         1               
+// Motor2               motor         2               
+// Motor3               motor         3               
+// Motor4               motor         4               
+// Motor5               motor         5               
+// Motor6               motor         6               
+// Controller1          controller                    
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 #include "vex.h"
@@ -32,7 +41,7 @@ competition Competition;
 void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
   vexcodeInit();
-
+  
   // All activities that occur before the competition starts
   // Example: clearing encoders, setting servo positions, ...
 }
@@ -48,9 +57,17 @@ void pre_auton(void) {
 /*---------------------------------------------------------------------------*/
 
 void autonomous(void) {
-  // ..........................................................................
-  // Insert autonomous user code here.
-  // ..........................................................................
+  /*Brain.Screen.print("Start Autonomous");
+  Drivetrain.setDriveVelocity(500, rpm);
+  Drivetrain.driveFor(reverse, 279.4, mm);
+  Drivetrain.turnFor(-90, degrees);
+  Drivetrain.driveFor(reverse, 1168.4, mm);
+  Drivetrain.driveFor(forward, 762, mm);
+
+  Brain.Screen.print("1526A Autonomous");
+  Drivetrain.setDriveVelocity(500, rpm);
+  Drivetrain.driveFor(reverse, 152.4, mm);
+  Drivetrain.driveFor(forward, 304.8, mm);*/
 }
 
 /*---------------------------------------------------------------------------*/
