@@ -1,4 +1,5 @@
 #include "vex.h"
+
 // soham was here
 using namespace vex;
 using signature = vision::signature;
@@ -34,6 +35,11 @@ motor Motor7 = motor(PORT7, ratio6_1, false);
 // expansion motor #2
 motor Motor9 = motor(PORT9, ratio18_1, false);
 
+void autonomous(void) {
+  Drivetrain.setDriveVelocity(500, rpm);
+  Drivetrain.driveFor(forward, 100, mm);
+  Motor4.rotateFor(1, seconds);
+}
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
@@ -54,7 +60,7 @@ int rc_auto_loop_function_Controller1() {
       int drivetrainLeftSideSpeed = Controller1.Axis3.position() + Controller1.Axis1.position();
      
 
-      int drivetrainRightSideSpeed = Controller1.Axis3.position() - Controller1.Axis1.position();
+      int drivetrainRightSideSpeed = Controller1.Axis3.position()*0.7 - Controller1.Axis1.position()*0.7;
 
       //Below code is trying to decrease turning speed
       /*
@@ -152,6 +158,13 @@ if(Controller1.ButtonDown.pressing()){
 // Controller vibrate code
 if (Motor7.velocity(pct) > 80) {
   Controller1.rumble("--");
+}
+
+// auton test
+if(Controller1.ButtonLeft.pressing()) {
+  Drivetrain.setDriveVelocity(500, rpm);
+  Drivetrain.driveFor(forward, 100, mm);
+  Motor4.rotateFor(1, seconds);
 }
     
 // Intake code
