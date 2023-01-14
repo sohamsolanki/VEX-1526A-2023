@@ -44,9 +44,10 @@ void pre_auton(void) {
 }
 void autonomous(void) {
   Drivetrain.setDriveVelocity(500, rpm);
+  Motor4.setVelocity(100, pct);
   Drivetrain.driveFor(forward, 100, mm);
-  Motor4.rotateFor(3, seconds);
-  Drivetrain.driveFor(reverse, 100, mm);
+  Motor4.rotateFor(5, seconds);
+  // Drivetrain.driveFor(reverse, 200, mm);
 }
 
 // VEXcode generated functions
@@ -160,7 +161,7 @@ if(Controller1.ButtonDown.pressing()){
     Controller1.Screen.newLine();
     Controller1.Screen.print("RPM %f", Motor7.velocity(rpm));
     Controller1.Screen.newLine();
-    Controller1.Screen.print("Battery %.2f%% full", (Brain.Battery.voltage()/Brain.Battery.capacity())*100);
+    Controller1.Screen.print("Battery %.2f%% full", (100-(Brain.Battery.voltage()/Brain.Battery.capacity())*100));
   }
 
 // Controller vibrate code
@@ -171,15 +172,16 @@ if (Motor7.velocity(pct) > 80) {
 // auton test
 if(Controller1.ButtonLeft.pressing()) {
   Drivetrain.setDriveVelocity(500, rpm);
+  Motor4.setVelocity(100, pct);
   Drivetrain.driveFor(forward, 100, mm);
-  Motor4.rotateFor(1, seconds);
-  Drivetrain.driveFor(reverse, 200, mm);
+  Motor4.rotateFor(5, seconds);
+  // Drivetrain.driveFor(reverse, 200, mm);
 }
     
 // Intake code
 bool L1buttonPressed = false;
 bool L2buttonPressed = false;
-Motor4.setVelocity(150, rpm);
+Motor4.setVelocity(100, pct);
      if (Controller1.ButtonL1.pressing()) {
         if(L1buttonPressed == true){
           L1buttonPressed = false;
