@@ -73,7 +73,7 @@ int rc_auto_loop_function_Controller1() {
       int drivetrainLeftSideSpeed = Controller1.Axis3.position() + Controller1.Axis1.position();
      
 
-      int drivetrainRightSideSpeed = Controller1.Axis3.position()* - Controller1.Axis1.position();
+      int drivetrainRightSideSpeed = Controller1.Axis3.position() - Controller1.Axis1.position();
 
       //Below code is trying to decrease turning speed
       /*
