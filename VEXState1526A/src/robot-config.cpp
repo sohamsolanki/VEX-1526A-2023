@@ -18,9 +18,9 @@ pneumatics Piston1 = pneumatics(Brain.ThreeWirePort.H);
 motor leftMotorA = motor(PORT1, ratio6_1, true);
 motor leftMotorB = motor(PORT2, ratio6_1, true);
 motor leftMotorC = motor(PORT3, ratio6_1, true);
-motor rightMotorA = motor(PORT4, ratio6_1, true);
-motor rightMotorB = motor(PORT5, ratio6_1, true);
-motor rightMotorC = motor(PORT6, ratio6_1, true);
+motor rightMotorA = motor(PORT8, ratio6_1, true);
+motor rightMotorB = motor(PORT9, ratio6_1, true);
+motor rightMotorC = motor(PORT10, ratio6_1, true);
 
 // intake and roller mech
 motor Motor7 = motor(PORT7, ratio18_1, false);
