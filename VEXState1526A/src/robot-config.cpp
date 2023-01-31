@@ -23,14 +23,14 @@ motor rightMotorB = motor(PORT9, ratio6_1, true);
 motor rightMotorC = motor(PORT10, ratio6_1, true);
 
 // intake and roller mech
+motor Motor6 = motor(PORT6, ratio18_1, false);
+
+// flywheel
 motor Motor7 = motor(PORT7, ratio18_1, false);
 
 /* // string launcher
 motor Motor8 = motor(PORT8, ratio36_1, false);
 motor Motor9 = motor(PORT9, ratio36_1, false); */
-
-// flywheel motor 
-// motor Motor10 = motor(PORT10, ratio6_1, false);
 
 // expansion motor 
 // motor Motor11 = motor(PORT11, ratio18_1, false);
@@ -129,15 +129,15 @@ int rc_auto_loop_function_Controller1() {
 // Motor coast code
 Drivetrain.setStopping(brakeType::coast);
   
-/* // Flywheel code
-Motor10.setVelocity(100, pct);
+// Flywheel code
+Motor7.setVelocity(100, pct);
   if(Controller1.ButtonR1.pressing()){
-  Motor10.spin(forward);
+  Motor7.spin(forward);
   }
   if(Controller1.ButtonR2.pressing()){
-  Motor10.stop();
+  Motor7.stop();
   }
-  */ 
+  
 
 /* // Expansion motor code
 Motor9.setVelocity(100, pct);
@@ -177,16 +177,16 @@ if (Motor7.velocity(pct) > 80) {
 // auton test
 if(Controller1.ButtonLeft.pressing()) {
   Drivetrain.setDriveVelocity(500, rpm);
-  Motor7.setVelocity(100, pct);
+  Motor6.setVelocity(100, pct);
   Drivetrain.driveFor(forward, 100, mm);
-  Motor7.rotateFor(5, seconds);
+  Motor6.rotateFor(5, seconds);
   // Drivetrain.driveFor(reverse, 200, mm);
 }
     
 // Intake code
 bool L1buttonPressed = false;
 bool L2buttonPressed = false;
-Motor7.setVelocity(100, pct);
+Motor6.setVelocity(100, pct);
      if (Controller1.ButtonL1.pressing()) {
         if(L1buttonPressed == true){
           L1buttonPressed = false;
@@ -204,13 +204,13 @@ Motor7.setVelocity(100, pct);
       }
   
     if (L2buttonPressed == true) {
-      Motor7.spin(forward);
+      Motor6.spin(forward);
     } else {
-      Motor7.stop();
+      Motor6.stop();
     }
 
      if(L1buttonPressed == true){
-      Motor7.spin(reverse);
+      Motor6.spin(reverse);
     }
 
   // Limit switch code
