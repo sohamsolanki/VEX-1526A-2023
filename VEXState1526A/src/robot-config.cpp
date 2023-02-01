@@ -71,19 +71,17 @@ int rc_auto_loop_function_Controller1() {
       // left = Axis3 + Axis1
       // right = Axis3 - Axis1
       int drivetrainLeftSideSpeed = Controller1.Axis3.position() + Controller1.Axis1.position();
-     
-
       int drivetrainRightSideSpeed = Controller1.Axis3.position() - Controller1.Axis1.position();
 
       //Below code is trying to decrease turning speed
-      /*
+      
       if(Controller1.Axis1.position() > 0 && Controller1.Axis3.position() > -5 && Controller1.Axis3.position() < 5){
-        drivetrainLeftSideSpeed = drivetrainLeftSideSpeed * 0.05;
+        drivetrainLeftSideSpeed = drivetrainLeftSideSpeed * 0.75;
         }
       if(Controller1.Axis1.position() < 0 && Controller1.Axis3.position() > -5 && Controller1.Axis3.position() < 5){
-        drivetrainRightSideSpeed = drivetrainRightSideSpeed * 0.05;
+        drivetrainRightSideSpeed = drivetrainRightSideSpeed * 0.75;
         }
-        */
+        
       
       // check if the value is inside of the deadband range
       if (drivetrainLeftSideSpeed < 5 && drivetrainLeftSideSpeed > -5) {
