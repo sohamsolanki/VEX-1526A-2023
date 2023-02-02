@@ -128,7 +128,7 @@ int rc_auto_loop_function_Controller1() {
 Drivetrain.setStopping(brakeType::coast);
   
 // Flywheel code
-Motor7.setVelocity(100, pct);
+Motor7.setVelocity(-100, pct);
   if(Controller1.ButtonR1.pressing()){
   Motor7.spin(forward);
   }
