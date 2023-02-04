@@ -130,8 +130,9 @@ Drivetrain.setStopping(brakeType::coast);
 // auton test
 if(Controller1.ButtonA.pressing()) {
   Drivetrain.setDriveVelocity(500, rpm);
-  Motor6.setVelocity(100, pct);
+  Motor6.setVelocity(500, rpm);
   Drivetrain.driveFor(reverse, 100, mm);
+  Motor6.spin(forward);
   // Drivetrain.driveFor(reverse, 200, mm);
 }
 
