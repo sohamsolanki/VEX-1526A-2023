@@ -210,11 +210,6 @@ Motor6.setVelocity(100, pct);
       Motor6.spin(reverse);
     }
 
-  // Limit switch code
-    if(Limit1.pressing()) {
-      Motor7.spin(forward);
-    }
-
    // Piston code
     if (Controller1.ButtonX.pressing()){
       Piston1.close();
