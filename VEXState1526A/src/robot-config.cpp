@@ -11,8 +11,7 @@ brain  Brain;
 // VEXcode device constructors
 competition Competition;
 controller Controller1 = controller(primary);
-limit Limit1 = limit(Brain.ThreeWirePort.C);
-pneumatics Piston1 = pneumatics(Brain.ThreeWirePort.H);
+pneumatics Piston1 = pneumatics(Brain.ThreeWirePort.A);
 
 // 6 motor drivetrain
 motor leftMotorA = motor(PORT1, ratio6_1, true);
@@ -220,7 +219,7 @@ Motor6.setVelocity(100, pct);
     if (Controller1.ButtonX.pressing()){
       Piston1.close();
       Motor6.spin(reverse);
-      wait(3, seconds);
+      wait(1, seconds);
       Motor6.stop();
       Piston1.open();
     }
