@@ -53,6 +53,7 @@ void autonomous(void) {
   // Drivetrain.driveFor(reverse, 200, mm);
 }
 
+
 // VEXcode generated functions
 // define variable for remote controller enable/disable
 bool RemoteControlCodeEnabled = true;
@@ -126,6 +127,14 @@ int rc_auto_loop_function_Controller1() {
 // Motor coast code
 Drivetrain.setStopping(brakeType::coast);
   
+// auton test
+if(Controller1.ButtonA.pressing()) {
+  Drivetrain.setDriveVelocity(500, rpm);
+  Motor6.setVelocity(100, pct);
+  Drivetrain.driveFor(reverse, 100, mm);
+  // Drivetrain.driveFor(reverse, 200, mm);
+}
+
 // Flywheel code
 Motor7.setVelocity(-100, pct);
   if(Controller1.ButtonR1.pressing()){
@@ -171,14 +180,6 @@ if (Motor7.velocity(pct) > 80) {
   Controller1.rumble("--");
 }
 
-// auton test
-if(Controller1.ButtonLeft.pressing()) {
-  Drivetrain.setDriveVelocity(500, rpm);
-  Motor6.setVelocity(100, pct);
-  Drivetrain.driveFor(forward, 100, mm);
-  Motor6.rotateFor(5, seconds);
-  // Drivetrain.driveFor(reverse, 200, mm);
-}
     
 // Intake code
 bool L1buttonPressed = false;
