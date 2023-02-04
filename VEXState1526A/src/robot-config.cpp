@@ -212,11 +212,11 @@ Motor6.setVelocity(100, pct);
 
    // Piston code
     if (Controller1.ButtonX.pressing()){
-      Piston1.close();
+      Piston1.open();
       Motor6.spin(reverse);
       wait(1, seconds);
       Motor6.stop();
-      Piston1.open();
+      Piston1.close();
     }
 
   /* // STRING LAUNCHER
