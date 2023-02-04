@@ -70,7 +70,7 @@ int rc_auto_loop_function_Controller1() {
       // calculate the drivetrain motor velocities from the controller joystick axies
       // left = Axis3 + Axis1
       // right = Axis3 - Axis1
-      int drivetrainLeftSideSpeed = Controller1.Axis3.position() + Controller1.Axis1.position()*0.83;
+      int drivetrainLeftSideSpeed = Controller1.Axis3.position() + Controller1.Axis1.position()*0.88;
       int drivetrainRightSideSpeed = Controller1.Axis3.position() - Controller1.Axis1.position()*0.75;
 
       /* //Below code is trying to decrease turning speed
@@ -84,7 +84,7 @@ int rc_auto_loop_function_Controller1() {
        */  
       
       // check if the value is inside of the deadband range
-      if (drivetrainLeftSideSpeed < 10 && drivetrainLeftSideSpeed > -10) {
+      if (drivetrainLeftSideSpeed < 15 && drivetrainLeftSideSpeed > -15) {
         // check if the left motor has already been stopped
         if (DrivetrainLNeedsToBeStopped_Controller1) {
           // stop the left drive motor
@@ -97,7 +97,7 @@ int rc_auto_loop_function_Controller1() {
         DrivetrainLNeedsToBeStopped_Controller1 = true;
       }
       // check if the value is inside of the deadband range
-      if (drivetrainRightSideSpeed < 10 && drivetrainRightSideSpeed > -10) {
+      if (drivetrainRightSideSpeed < 15 && drivetrainRightSideSpeed > -15) {
         // check if the right motor has already been stopped
         if (DrivetrainRNeedsToBeStopped_Controller1) {
           // stop the right drive motor
