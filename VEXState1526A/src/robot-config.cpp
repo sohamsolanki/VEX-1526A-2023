@@ -76,10 +76,10 @@ int rc_auto_loop_function_Controller1() {
       //Below code is trying to decrease turning speed
       
       if(Controller1.Axis1.position() > 0 && Controller1.Axis3.position() > -5 && Controller1.Axis3.position() < 5){
-        drivetrainLeftSideSpeed = drivetrainLeftSideSpeed * 0.5;
+        drivetrainLeftSideSpeed = drivetrainLeftSideSpeed * 0.1;
         }
       if(Controller1.Axis1.position() < 0 && Controller1.Axis3.position() > -5 && Controller1.Axis3.position() < 5){
-        drivetrainRightSideSpeed = drivetrainRightSideSpeed * 0.5;
+        drivetrainRightSideSpeed = drivetrainRightSideSpeed * 0.1;
         }
         
       
