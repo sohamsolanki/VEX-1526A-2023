@@ -70,7 +70,7 @@ int rc_auto_loop_function_Controller1() {
       // calculate the drivetrain motor velocities from the controller joystick axies
       // left = Axis3 + Axis1
       // right = Axis3 - Axis1
-      int drivetrainLeftSideSpeed = Controller1.Axis3.position() + Controller1.Axis1.position()*0.80;
+      int drivetrainLeftSideSpeed = Controller1.Axis3.position() + Controller1.Axis1.position()*0.83;
       int drivetrainRightSideSpeed = Controller1.Axis3.position() - Controller1.Axis1.position()*0.75;
 
       /* //Below code is trying to decrease turning speed
