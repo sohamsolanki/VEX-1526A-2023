@@ -70,21 +70,21 @@ int rc_auto_loop_function_Controller1() {
       // calculate the drivetrain motor velocities from the controller joystick axies
       // left = Axis3 + Axis1
       // right = Axis3 - Axis1
-      int drivetrainLeftSideSpeed = Controller1.Axis3.position() + Controller1.Axis1.position();
-      int drivetrainRightSideSpeed = Controller1.Axis3.position() - Controller1.Axis1.position();
+      int drivetrainLeftSideSpeed = Controller1.Axis3.position() + Controller1.Axis1.position()*0.75;
+      int drivetrainRightSideSpeed = Controller1.Axis3.position() - Controller1.Axis1.position()*0.75;
 
-      //Below code is trying to decrease turning speed
+      /* //Below code is trying to decrease turning speed
       
-      if(Controller1.Axis1.position() > 0 /* && Controller1.Axis3.position() > -5 && Controller1.Axis3.position() < 5*/){
-        drivetrainLeftSideSpeed = drivetrainLeftSideSpeed * 0.1;
+      if(Controller1.Axis1.position() < 0 && Controller1.Axis3.position() > -5 && Controller1.Axis3.position() < 5){
+        drivetrainLeftSideSpeed = drivetrainLeftSideSpeed * 0.75;
         }
-      if(Controller1.Axis1.position() < 0 /*&& Controller1.Axis3.position() > -5 && Controller1.Axis3.position() < 5*/){
-        drivetrainRightSideSpeed = drivetrainRightSideSpeed * 0.1;
+      if(Controller1.Axis1.position() > 0 && Controller1.Axis3.position() > -5 && Controller1.Axis3.position() < 5){
+        drivetrainRightSideSpeed = drivetrainRightSideSpeed * 0.75;
         }
-        
+       */  
       
       // check if the value is inside of the deadband range
-      if (drivetrainLeftSideSpeed < 5 && drivetrainLeftSideSpeed > -5) {
+      if (drivetrainLeftSideSpeed < 10 && drivetrainLeftSideSpeed > -10) {
         // check if the left motor has already been stopped
         if (DrivetrainLNeedsToBeStopped_Controller1) {
           // stop the left drive motor
@@ -97,7 +97,7 @@ int rc_auto_loop_function_Controller1() {
         DrivetrainLNeedsToBeStopped_Controller1 = true;
       }
       // check if the value is inside of the deadband range
-      if (drivetrainRightSideSpeed < 5 && drivetrainRightSideSpeed > -5) {
+      if (drivetrainRightSideSpeed < 10 && drivetrainRightSideSpeed > -10) {
         // check if the right motor has already been stopped
         if (DrivetrainRNeedsToBeStopped_Controller1) {
           // stop the right drive motor
