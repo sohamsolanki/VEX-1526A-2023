@@ -131,7 +131,7 @@ Drivetrain.setStopping(brakeType::coast);
 if(Controller1.ButtonA.pressing()) {
   Drivetrain.setDriveVelocity(500, rpm);
   Motor6.setVelocity(500, rpm);
-  Drivetrain.driveFor(reverse, 100, mm);
+  Drivetrain.driveFor(forward, 100, mm);
   Motor6.spin(forward);
   // Drivetrain.driveFor(reverse, 200, mm);
 }
