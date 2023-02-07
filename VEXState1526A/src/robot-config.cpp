@@ -183,6 +183,15 @@ if(Controller1.ButtonDown.pressing()) {
   wait(0.2, seconds);
   LeftDriveSmart.stop();
   RightDriveSmart.stop();
+  Drivetrain.drive(forward);
+  wait(0.3, seconds);
+  Drivetrain.stop();
+  wait(0.1, seconds);
+  LeftDriveSmart.spin(forward);
+  RightDriveSmart.spin(reverse);
+  wait(1.5, seconds);
+  LeftDriveSmart.stop();
+  RightDriveSmart.stop();
 }
 
 // Flywheel code
