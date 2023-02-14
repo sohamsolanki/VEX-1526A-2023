@@ -9,10 +9,10 @@ brain  Brain;
 
 // VEXcode device constructors
 /*vex-vision-config:begin*/
-signature Vision5__BLUEBOX = signature (1, -3441, -2785, -3113, 8975, 10355, 9665, 2.5, 0);
-signature Vision5__GREENBOX = signature (2, 0, 0, 0, 0, 0, 0, 3, 0);
-signature Vision5__REDBOX = signature (3, 0, 0, 0, 0, 0, 0, 3, 0);
-vision Vision5 = vision (PORT5, 150, Vision5__BLUEBOX, Vision5__GREENBOX, Vision5__REDBOX);
+signature VisionSensor__BLUEBOX = signature (1, -3441, -2785, -3113, 8975, 10355, 9665, 2.5, 0);
+signature VisionSensor__GREENBOX = signature (2, 0, 0, 0, 0, 0, 0, 3, 0);
+signature VisionSensor__REDBOX = signature (3, 0, 0, 0, 0, 0, 0, 3, 0);
+vision VisionSensor = vision (PORT5, 150, VisionSensor__BLUEBOX, VisionSensor__GREENBOX, VisionSensor__REDBOX);
 /*vex-vision-config:end*/
 
 // VEXcode generated functions
