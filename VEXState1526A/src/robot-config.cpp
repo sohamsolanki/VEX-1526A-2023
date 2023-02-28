@@ -221,7 +221,7 @@ if(Controller1.ButtonDown.pressing()){
   Controller1.Screen.clearScreen();
   Controller1.Screen.setCursor(1, 1);
   // wait(6, seconds);
-  if (Motor7.velocity(pct) > 80) {
+  if (Motor7.velocity(rpm) < -125) {
     Controller1.Screen.clearScreen();
     Controller1.Screen.setCursor(1, 1);
     Controller1.Screen.print("Flywheel READY");
@@ -279,7 +279,7 @@ Motor6.setVelocity(100, pct);
     if (Controller1.ButtonX.pressing()){
       Piston1.open();
       Motor6.spin(forward);
-      wait(1, seconds);
+      wait(3, seconds);
       Motor6.stop();
       Piston1.close();
     }
