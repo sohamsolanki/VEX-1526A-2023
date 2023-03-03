@@ -130,14 +130,15 @@ int rc_auto_loop_function_Controller1() {
 // Motor coast code
 Drivetrain.setStopping(brakeType::coast);
   
-// auton test
+/* auton test
 if(Controller1.ButtonA.pressing()) {
   Drivetrain.setDriveVelocity(500, rpm);
   Motor6.setVelocity(500, rpm);
   Drivetrain.driveFor(reverse, 100, mm);
   Motor6.spin(reverse);
   wait(0.6,sec);
-  Motor6.stop();
+  Motor6.stop(); */
+
   // Drivetrain.driveFor(reverse, 200, mm);
 }
 
@@ -264,6 +265,16 @@ Motor6.setVelocity(100, pct);
           L2buttonPressed = true;
         }
       }
+
+      //rohit code
+      if (Controller1.ButtonL1.pressing() && Controller1.ButtonL2.pressing()){
+        Motor6.setVelocity(25, pct);
+        Motor6.spin(forward);
+      } else {
+        Motor6.setVelocity(100, pct);
+      }
+
+      //rohit code
   
     if (L2buttonPressed == true) {
       Motor6.spin(forward);
@@ -295,8 +306,7 @@ Motor6.setVelocity(100, pct);
     // wait before repeating the process
     wait(1, msec);
   }
-  return 0;
-}
+  //return 0;
 
 int main() {
   // Set up callbacks for autonomous and driver control periods.
