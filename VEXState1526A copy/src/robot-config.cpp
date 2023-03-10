@@ -148,16 +148,18 @@ if(Controller1.ButtonUp.pressing()) {
         }
       }
 if(DownbuttonPressed == true) {
-  Drivetrain.setDriveVelocity(100, pct);
+  LeftDriveSmart.setVelocity(100, pct);
+  RightDriveSmart.setVelocity(100, pct);
   } else {
-      Drivetrain.setDriveVelocity(10, pct);
-      Drivetrain.stop();
+      LeftDriveSmart.setVelocity(10, pct);
+      RightDriveSmart.setVelocity(10, pct);
   }
 if(UpbuttonPressed == true){
-  Drivetrain.setDriveVelocity(10, pct);
+  LeftDriveSmart.setVelocity(10, pct);
+  RightDriveSmart.setVelocity(10, pct);
     } else {
-      Drivetrain.setDriveVelocity(100, pct);
-      Drivetrain.stop();
+      LeftDriveSmart.setVelocity(100, pct);
+      RightDriveSmart.setVelocity(100, pct);
     }
 
 // Auton test
