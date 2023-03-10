@@ -44,6 +44,22 @@ void pre_auton(void) {
   // Example: clearing encoders, setting servo positions, ...
 }
 void autonomous(void) {
+  Motor6.setVelocity(500, rpm);
+  Drivetrain.setDriveVelocity(500, rpm);
+  LeftDriveSmart.spin(reverse);
+  RightDriveSmart.spin(forward);
+  wait(0.35, seconds);
+  Drivetrain.drive(forward);
+  wait(0.25, seconds);
+  Drivetrain.stop();
+  LeftDriveSmart.spin(reverse);
+  RightDriveSmart.spin(forward);
+  wait(0.5, seconds);
+  LeftDriveSmart.stop();
+  RightDriveSmart.stop();
+  Motor6.spin(reverse);
+  wait(1, seconds);
+  Motor6.stop();
 }
 
 /*----------------------------------------------------------------------------*/
@@ -109,7 +125,7 @@ int rc_auto_loop_function_Controller1() {
         RightDriveSmart.spin(reverse);
       }
 
-      // slow down the drivetrain when button up is pressed for higher accuracy when aiming for the goal
+      // slow down the drivetrain when button Up is pressed for higher accuracy when aiming for the goal
       if(Controller1.ButtonUp.pressing()) {
         LeftDriveSmart.setVelocity((drivetrainLeftSideSpeed * 0.25), percent);
         LeftDriveSmart.spin(forward);
@@ -125,67 +141,6 @@ int rc_auto_loop_function_Controller1() {
 // Motor coast code
 Drivetrain.setStopping(brakeType::coast);
 
-// Auton test
-// Left side auton
-if(Controller1.ButtonLeft.pressing()) {
-  Motor6.setVelocity(500, rpm);
-  Drivetrain.setDriveVelocity(500, rpm);
-  LeftDriveSmart.spin(reverse);
-  RightDriveSmart.spin(forward);
-  wait(0.2, seconds);
-  LeftDriveSmart.stop();
-  RightDriveSmart.stop();
-  Motor6.spin(forward);
-  wait(1, seconds);
-  Motor6.stop();
-}
-// Right side auton
-if(Controller1.ButtonRight.pressing()) {
-  Motor6.setVelocity(500, rpm);
-  Drivetrain.setDriveVelocity(500, rpm);
-  LeftDriveSmart.spin(reverse);
-  RightDriveSmart.spin(forward);
-  wait(0.35, seconds);
-  Drivetrain.drive(forward);
-  wait(0.25, seconds);
-  Drivetrain.stop();
-  LeftDriveSmart.spin(reverse);
-  RightDriveSmart.spin(forward);
-  wait(0.5, seconds);
-  LeftDriveSmart.stop();
-  RightDriveSmart.stop();
-  Motor6.spin(reverse);
-  wait(1, seconds);
-  Motor6.stop();
-}
-/* // skills
-if(Controller1.ButtonDown.pressing()) {
-  Motor6.setVelocity(500, rpm);
-  Drivetrain.setDriveVelocity(500, rpm);
-  LeftDriveSmart.spin(reverse);
-  RightDriveSmart.spin(forward);
-  wait(0.2, seconds);
-  LeftDriveSmart.stop();
-  RightDriveSmart.stop();
-  Motor6.spin(forward);
-  wait(0.4, seconds);
-  Motor6.stop();
-  LeftDriveSmart.spin(forward);
-  RightDriveSmart.spin(reverse);
-  wait(0.2, seconds);
-  LeftDriveSmart.stop();
-  RightDriveSmart.stop();
-  Drivetrain.drive(forward);
-  wait(0.3, seconds);
-  Drivetrain.stop();
-  wait(0.1, seconds);
-  LeftDriveSmart.spin(forward);
-  RightDriveSmart.spin(reverse);
-  wait(1.5, seconds);
-  LeftDriveSmart.stop();
-  RightDriveSmart.stop();
-} */
-  
 /*----------------------------------------------------------------------------*/
 /*                      CONTROLLER DISPLAY + VIBRATE                          */
 /*----------------------------------------------------------------------------*/
