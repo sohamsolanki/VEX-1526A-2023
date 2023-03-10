@@ -45,7 +45,7 @@ void usercontrol(void) {
     // update your motors, etc.
     // ........................................................................
 
-    wait(20, msec); // Sleep the task for a shorFort amount of time to
+    wait(5, msec); // Sleep the task for a shorFort amount of time to
                     // prevent wasted resources.
   }
 }
