@@ -273,7 +273,7 @@ if(Controller1.ButtonR2.pressing()){
   }
 
 // ENDGAME MECH
-// Description: This is used for our endgame mechanism. 
+// Description: This is used for our endgame mechanism. It will open our second piston when Button Left is being pressed. It will act as a blocker for other teams' endgame mechanisms, causing either less tiles to be covered or disqualification.
 if(Controller1.ButtonLeft.pressing()){
   Piston2.open();
 }
