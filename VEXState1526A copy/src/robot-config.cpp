@@ -56,6 +56,9 @@ void autonomous(void) {
 
 }
 
+/*----------------------------------------------------------------------------*/
+/*                           DRIVETRAIN CODE                                  */
+/*----------------------------------------------------------------------------*/
 
 // VEXcode generated functions
 // define variable for remote controller enable/disable
@@ -130,10 +133,14 @@ int rc_auto_loop_function_Controller1() {
       }
     }
 
+/*----------------------------------------------------------------------------*/
+/*                        USER CONTROL + FUNCTIONS                            */
+/*----------------------------------------------------------------------------*/   
+
 // Motor coast code
 Drivetrain.setStopping(brakeType::coast);
   
-// auton test
+// Auton test
 if(Controller1.ButtonA.pressing()) {
   Drivetrain.setDriveVelocity(500, rpm);
   Motor6.setVelocity(500, rpm);
@@ -201,24 +208,10 @@ if(Controller1.ButtonDown.pressing()) {
   LeftDriveSmart.stop();
   RightDriveSmart.stop();
 }
-
-// Flywheel code
-Motor7.setVelocity(-100, pct);
-  if(Controller1.ButtonR1.pressing()){
-  Motor7.spin(forward);
-  }
-  if(Controller1.ButtonR2.pressing()){
-  Motor7.stop();
-  }
   
-
-/* // Expansion motor code
-Motor9.setVelocity(100, pct);
-if(Controller1.ButtonDown.pressing()){
-  Motor9.rotateFor(90, rotationUnits::deg);
-  wait(1, sec);
-  Motor9.rotateFor(-90, rotationUnits::deg);
-} */
+/*----------------------------------------------------------------------------*/
+/*                      CONTROLLER DISPLAY + VIBRATE                          */
+/*----------------------------------------------------------------------------*/
 
 // Controller Display code
   Controller1.Screen.clearScreen();
@@ -246,40 +239,40 @@ if(Controller1.ButtonDown.pressing()){
 if (Motor7.velocity(pct) > 80) {
   Controller1.rumble("--");
 }
+ 
+/*----------------------------------------------------------------------------*/
+/*                       INTAKE + PISTON + FLYWHEEL                           */
+/*----------------------------------------------------------------------------*/
 
-    
-// Intake code
+// INTAKE
 bool L1buttonPressed = false;
 bool L2buttonPressed = false;
 Motor6.setVelocity(100, pct);
-     if (Controller1.ButtonL1.pressing()) {
-        if(L1buttonPressed == true){
-          L1buttonPressed = false;
-        }else{
-          L1buttonPressed = true;
-        }
-      }
-
-      if (Controller1.ButtonL2.pressing()) {
-        if(L2buttonPressed == true) {
-          L2buttonPressed = false;
-        } else {
-          L2buttonPressed = true;
-        }
-      }
-  
-    if (L2buttonPressed == true) {
-      Motor6.spin(forward);
+if(Controller1.ButtonL1.pressing()) {
+  if(L1buttonPressed == true){
+    L1buttonPressed = false;
     } else {
+        L1buttonPressed = true;
+        }
+      }
+if(Controller1.ButtonL2.pressing()) {
+  if(L2buttonPressed == true) {
+    L2buttonPressed = false;
+    } else {
+        L2buttonPressed = true;
+        }
+      }
+if(L2buttonPressed == true) {
+  Motor6.spin(forward);
+  } else {
       Motor6.stop();
+  }
+if(L1buttonPressed == true){
+  Motor6.spin(reverse);
     }
 
-     if(L1buttonPressed == true){
-      Motor6.spin(reverse);
-    }
-
-   // Piston code
-    if (Controller1.ButtonX.pressing()){
+// PISTON
+if (Controller1.ButtonX.pressing()){
       Piston1.open();
       Motor6.spin(forward);
       wait(1, seconds);
@@ -287,14 +280,15 @@ Motor6.setVelocity(100, pct);
       Piston1.close();
     }
 
-  /* // STRING LAUNCHER
-  if (Controller1.ButtonDown.pressing()) {
-    Motor8.rotateFor(-90, rotationUnits::deg);
-    Motor9.rotateFor(90, rotationUnits::deg);
-   //  wait(1, seconds);
-    // Motor8.rotateFor(90, rotationUnits::deg);
-   //  Motor3.rotateFor(-90, rotationUnits::deg);
-  } */
+// FLYWHEEL
+Motor7.setVelocity(-100, pct);
+  if(Controller1.ButtonR1.pressing()){
+  Motor7.spin(forward);
+  }
+  if(Controller1.ButtonR2.pressing()){
+  Motor7.stop();
+  }
+
     // wait before repeating the process
     wait(1, msec);
   }
