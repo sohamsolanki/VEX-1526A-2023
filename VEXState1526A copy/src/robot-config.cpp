@@ -130,12 +130,13 @@ int rc_auto_loop_function_Controller1() {
 // Motor coast code
 Drivetrain.setStopping(brakeType::coast);
   
-// Slow down macro
+/* // Slow down macro
 if(Controller1.ButtonUp.pressing()) {
   Drivetrain.setDriveVelocity(50, rpm);
 } else {
   Drivetrain.setDriveVelocity(500, rpm);
-}
+} */ 
+
 // Auton test
 // Left side auton
 if(Controller1.ButtonLeft.pressing()) {
