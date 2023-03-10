@@ -132,11 +132,9 @@ Drivetrain.setStopping(brakeType::coast);
   
 // Slow down macro
 if(Controller1.ButtonUp.pressing()) {
-  LeftDriveSmart.setVelocity(50, rpm);
-  RightDriveSmart.setVelocity(50, rpm);
+  Drivetrain.setDriveVelocity(50, rpm);
 } else {
-  LeftDriveSmart.setVelocity(500, rpm);
-  RightDriveSmart.setVelocity(500, rpm);
+  Drivetrain.setDriveVelocity(500, rpm);
 }
 // Auton test
 // Left side auton
