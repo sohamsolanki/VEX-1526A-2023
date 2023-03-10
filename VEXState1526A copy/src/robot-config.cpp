@@ -130,12 +130,32 @@ int rc_auto_loop_function_Controller1() {
 // Motor coast code
 Drivetrain.setStopping(brakeType::coast);
   
-/* // Slow down macro
+// Slow down macro
+bool UpbuttonPressed = false;
+bool DownbuttonPressed = false;
+Drivetrain.setDriveVelocity(100, pct);
+if(Controller1.ButtonL1.pressing()) {
+  if(UpbuttonPressed == true){
+    UpbuttonPressed = false;
+    } else {
+        UpbuttonPressed = true;
+        }
+      }
 if(Controller1.ButtonUp.pressing()) {
-  Drivetrain.setDriveVelocity(50, rpm);
-} else {
-  Drivetrain.setDriveVelocity(500, rpm);
-} */ 
+  if(DownbuttonPressed == true) {
+    DownbuttonPressed = false;
+    } else {
+        DownbuttonPressed = true;
+        }
+      }
+if(DownbuttonPressed == true) {
+  Motor6.spin(forward);
+  } else {
+      Drivetrain.setDriveVelocity(100, pct);
+  }
+if(UpbuttonPressed == true){
+  Drivetrain.setDriveVelocity(10, pct);
+    }
 
 // Auton test
 // Left side auton
@@ -170,7 +190,7 @@ if(Controller1.ButtonRight.pressing()) {
   wait(1, seconds);
   Motor6.stop();
 }
-// skills
+/* // skills
 if(Controller1.ButtonDown.pressing()) {
   Motor6.setVelocity(500, rpm);
   Drivetrain.setDriveVelocity(500, rpm);
@@ -196,7 +216,7 @@ if(Controller1.ButtonDown.pressing()) {
   wait(1.5, seconds);
   LeftDriveSmart.stop();
   RightDriveSmart.stop();
-}
+} */
   
 /*----------------------------------------------------------------------------*/
 /*                      CONTROLLER DISPLAY + VIBRATE                          */
