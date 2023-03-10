@@ -11,6 +11,7 @@ brain  Brain;
 competition Competition;
 controller Controller1 = controller(primary);
 pneumatics Piston1 = pneumatics(Brain.ThreeWirePort.A);
+pneumatics Piston2 = pneumatics(Brain.ThreeWirePort.B);
 
 // DRIVETRAIN
 motor leftMotorA = motor(PORT1, ratio6_1, true);
@@ -137,8 +138,13 @@ int rc_auto_loop_function_Controller1() {
 // Motor coast code
 Drivetrain.setStopping(brakeType::coast);
   
+// Slow down macro
+if(Controller1.ButtonUp.pressing()) {
+  LeftDriveSmart.setVelocity(50, rpm);
+  RightDriveSmart.setVelocity(50, rpm);
+}
 // Auton test
-// what is this for?
+// Left side auton
 if(Controller1.ButtonLeft.pressing()) {
   Motor6.setVelocity(500, rpm);
   Drivetrain.setDriveVelocity(500, rpm);
@@ -151,7 +157,7 @@ if(Controller1.ButtonLeft.pressing()) {
   wait(1, seconds);
   Motor6.stop();
 }
-// What is this for?
+// Right side auton
 if(Controller1.ButtonRight.pressing()) {
   Motor6.setVelocity(500, rpm);
   Drivetrain.setDriveVelocity(500, rpm);
@@ -170,7 +176,7 @@ if(Controller1.ButtonRight.pressing()) {
   wait(1, seconds);
   Motor6.stop();
 }
-// what is this for?
+// skills
 if(Controller1.ButtonDown.pressing()) {
   Motor6.setVelocity(500, rpm);
   Drivetrain.setDriveVelocity(500, rpm);
@@ -276,6 +282,11 @@ if(Controller1.ButtonR1.pressing()){
 if(Controller1.ButtonR2.pressing()){
   Motor7.stop();
   }
+
+// ENDGAME MECH
+if(Controller1.ButtonLeft.pressing()){
+  Piston2.open();
+}
 
 /*----------------------------------------------------------------------------*/
 /*                          MISCELLANEOUS FUNCTIONS                           */
