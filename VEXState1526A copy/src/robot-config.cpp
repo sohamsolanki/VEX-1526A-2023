@@ -149,11 +149,14 @@ if(Controller1.ButtonUp.pressing()) {
       }
 if(DownbuttonPressed == true) {
   Drivetrain.setDriveVelocity(100, pct);
+  Drivetrain.stop();
   } else {
       Drivetrain.setDriveVelocity(10, pct);
+      Drivetrain.stop();
   }
 if(UpbuttonPressed == true){
   Drivetrain.setDriveVelocity(10, pct);
+  Drivetrain.stop();
     }
 
 // Auton test
