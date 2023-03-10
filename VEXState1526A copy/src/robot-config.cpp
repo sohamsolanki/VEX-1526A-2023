@@ -133,7 +133,6 @@ Drivetrain.setStopping(brakeType::coast);
 // Slow down macro
 bool UpbuttonPressed = false;
 bool DownbuttonPressed = false;
-Drivetrain.setDriveVelocity(100, pct);
 if(Controller1.ButtonDown.pressing()) {
   if(UpbuttonPressed == true){
     UpbuttonPressed = false;
