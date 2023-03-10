@@ -69,11 +69,6 @@ int rc_auto_loop_function_Controller1() {
       int drivetrainLeftSideSpeed = (Controller1.Axis3.position() + Controller1.Axis1.position()*0.33);
       int drivetrainRightSideSpeed = (Controller1.Axis3.position() - Controller1.Axis1.position()*0.33);
 
-      if(Controller1.ButtonUp.pressing()) {
-        LeftDriveSmart.setVelocity((drivetrainLeftSideSpeed * 0.25), pct);
-        RightDriveSmart.setVelocity((drivetrainRightSideSpeed * 0.25), pct);
-      }
-
       //rohit code
       // int drivetrainLeftSideSpeed = Controller1.Axis3.position()*0.88;
       // int drivetrainRightSideSpeed = Controller1.Axis2.position();
@@ -125,6 +120,11 @@ int rc_auto_loop_function_Controller1() {
         
         RightDriveSmart.setVelocity(drivetrainRightSideSpeed, percent);
         RightDriveSmart.spin(reverse);
+      }
+      
+      if(Controller1.ButtonUp.pressing()) {
+        LeftDriveSmart.setVelocity((drivetrainLeftSideSpeed * 0.25), percent);
+        RightDriveSmart.setVelocity((drivetrainRightSideSpeed * 0.25), percent);
       }
     }
 
