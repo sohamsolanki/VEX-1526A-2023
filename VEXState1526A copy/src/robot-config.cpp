@@ -1,19 +1,18 @@
 #include "vex.h"
-
-// soham was here
 using namespace vex;
 using signature = vision::signature;
 using code = vision::code;
 
-// A global instance of brain used for printing to the V5 Brain screen
-brain  Brain;
+/*----------------------------------------------------------------------------*/
+/*                                DEVICES                                     */
+/*----------------------------------------------------------------------------*/
 
-// VEXcode device constructors
+brain  Brain;
 competition Competition;
 controller Controller1 = controller(primary);
 pneumatics Piston1 = pneumatics(Brain.ThreeWirePort.A);
 
-// 6 motor drivetrain
+// DRIVETRAIN
 motor leftMotorA = motor(PORT1, ratio6_1, true);
 motor leftMotorB = motor(PORT2, ratio6_1, true);
 motor leftMotorC = motor(PORT3, ratio6_1, true);
@@ -21,22 +20,20 @@ motor rightMotorA = motor(PORT8, ratio6_1, true);
 motor rightMotorB = motor(PORT9, ratio6_1, true);
 motor rightMotorC = motor(PORT10, ratio6_1, true);
 
-// intake and roller mech
+// INTAKE + ROLLER MECH
 motor Motor6 = motor(PORT6, ratio18_1, false);
 
-// flywheel
+// FLYWHEEL
 motor Motor7 = motor(PORT7, ratio18_1, false);
 
-/* // string launcher
-motor Motor8 = motor(PORT8, ratio36_1, false);
-motor Motor9 = motor(PORT9, ratio36_1, false); */
-
-// expansion motor 
-// motor Motor11 = motor(PORT11, ratio18_1, false);
-
+// MOTOR GROUPS (to make coding easier)
 motor_group LeftDriveSmart = motor_group(leftMotorA, leftMotorB, leftMotorC);
 motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB, rightMotorC);
 drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 295, 40, mm, 1);
+
+/*----------------------------------------------------------------------------*/
+/*                              VOID FUNCTIONS                                */
+/*----------------------------------------------------------------------------*/
 
 void pre_auton(void) {
   // Initializing Robot Configuration. DO NOT REMOVE!
@@ -141,16 +138,7 @@ int rc_auto_loop_function_Controller1() {
 Drivetrain.setStopping(brakeType::coast);
   
 // Auton test
-if(Controller1.ButtonA.pressing()) {
-  Drivetrain.setDriveVelocity(500, rpm);
-  Motor6.setVelocity(500, rpm);
-  Drivetrain.driveFor(reverse, 100, mm);
-  Motor6.spin(reverse);
-  wait(0.6,sec);
-  Motor6.stop();
-  // Drivetrain.driveFor(reverse, 200, mm);
-}
-
+// what is this for?
 if(Controller1.ButtonLeft.pressing()) {
   Motor6.setVelocity(500, rpm);
   Drivetrain.setDriveVelocity(500, rpm);
@@ -163,7 +151,7 @@ if(Controller1.ButtonLeft.pressing()) {
   wait(1, seconds);
   Motor6.stop();
 }
-
+// What is this for?
 if(Controller1.ButtonRight.pressing()) {
   Motor6.setVelocity(500, rpm);
   Drivetrain.setDriveVelocity(500, rpm);
@@ -182,6 +170,7 @@ if(Controller1.ButtonRight.pressing()) {
   wait(1, seconds);
   Motor6.stop();
 }
+// what is this for?
 if(Controller1.ButtonDown.pressing()) {
   Motor6.setVelocity(500, rpm);
   Drivetrain.setDriveVelocity(500, rpm);
@@ -213,10 +202,9 @@ if(Controller1.ButtonDown.pressing()) {
 /*                      CONTROLLER DISPLAY + VIBRATE                          */
 /*----------------------------------------------------------------------------*/
 
-// Controller Display code
+// DISPLAY
   Controller1.Screen.clearScreen();
   Controller1.Screen.setCursor(1, 1);
-  // wait(6, seconds);
   if (Motor7.velocity(pct) > 80) {
     Controller1.Screen.clearScreen();
     Controller1.Screen.setCursor(1, 1);
@@ -235,16 +223,16 @@ if(Controller1.ButtonDown.pressing()) {
     Controller1.Screen.print("Battery %.2f%% full", (100-(Brain.Battery.voltage()/Brain.Battery.capacity())*100));
   }
 
-// Controller vibrate code
+// VIBRATE
 if (Motor7.velocity(pct) > 80) {
   Controller1.rumble("--");
 }
  
 /*----------------------------------------------------------------------------*/
-/*                       INTAKE + PISTON + FLYWHEEL                           */
+/*              INTAKE + ROLLER MECH + PISTON + FLYWHEEL                      */
 /*----------------------------------------------------------------------------*/
 
-// INTAKE
+// INTAKE + ROLLER MECH
 bool L1buttonPressed = false;
 bool L2buttonPressed = false;
 Motor6.setVelocity(100, pct);
@@ -282,18 +270,23 @@ if (Controller1.ButtonX.pressing()){
 
 // FLYWHEEL
 Motor7.setVelocity(-100, pct);
-  if(Controller1.ButtonR1.pressing()){
+if(Controller1.ButtonR1.pressing()){
   Motor7.spin(forward);
   }
-  if(Controller1.ButtonR2.pressing()){
+if(Controller1.ButtonR2.pressing()){
   Motor7.stop();
   }
+
+/*----------------------------------------------------------------------------*/
+/*                          MISCELLANEOUS FUNCTIONS                           */
+/*----------------------------------------------------------------------------*/
 
     // wait before repeating the process
     wait(1, msec);
   }
   return 0;
 }
+
 
 int main() {
   // Set up callbacks for autonomous and driver control periods.
@@ -307,10 +300,9 @@ int main() {
   }
 }
 
-/**
- * Used to initialize code/tasks/devices added using tools in VEXcode Pro.
- * 
- * This should be called at the start of your int main function.
+/*
+ Used to initialize code/tasks/devices added using tools in VEXcode Pro.
+ This should be called at the start of your int main function.
  */
 void vexcodeInit( void ) {
   task rc_auto_loop_task_Controller1(rc_auto_loop_function_Controller1);
