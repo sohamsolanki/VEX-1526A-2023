@@ -66,62 +66,50 @@ int rc_auto_loop_function_Controller1() {
       // calculate the drivetrain motor velocities from the controller joystick axies
       // left = Axis3 + Axis1
       // right = Axis3 - Axis1
-      int drivetrainLeftSideSpeed = (Controller1.Axis3.position() + Controller1.Axis1.position()*0.33);
+      int drivetrainLeftSideSpeed = (Controller1.Axis3.position() + Controller1.Axis1.position()*0.33); //*0.33 is to help slowdown turning speed
       int drivetrainRightSideSpeed = (Controller1.Axis3.position() - Controller1.Axis1.position()*0.33);
 
-      //rohit code
-      // int drivetrainLeftSideSpeed = Controller1.Axis3.position()*0.88;
-      // int drivetrainRightSideSpeed = Controller1.Axis2.position();
-      //rohit code
-      /* //Below code is trying to decrease turning speed
-      
-      if(Controller1.Axis1.position() < 0 && Controller1.Axis3.position() > -5 && Controller1.Axis3.position() < 5){
-        drivetrainLeftSideSpeed = drivetrainLeftSideSpeed * 0.75;
-        }
-      if(Controller1.Axis1.position() > 0 && Controller1.Axis3.position() > -5 && Controller1.Axis3.position() < 5){
-        drivetrainRightSideSpeed = drivetrainRightSideSpeed * 0.75;
-        }
-       */  
       // check if the value is inside of the deadband range
+      // deadband range = where the joystick is
       if (drivetrainLeftSideSpeed < 0.001 && drivetrainLeftSideSpeed > 0.001) {
-        // check if the left motor has already been stopped
+        // check if the left side of the drivetrain has already been stopped
         if (DrivetrainLNeedsToBeStopped_Controller1) {
-          // stop the left drive motor
+          // stop the left side of the drivetrain
           LeftDriveSmart.stop();
-          // tell the code that the left motor has been stopped
+          // tell the code that the left side of the drivetrain has been stopped
           DrivetrainLNeedsToBeStopped_Controller1 = false;
         }
       } else {
-        // reset the toggle so that the deadband code knows to stop the left motor nexttime the input is in the deadband range
+        // reset the toggle so that the deadband code knows to stop the left side of the drivetrain the next time the input is in the deadband range
         DrivetrainLNeedsToBeStopped_Controller1 = true;
       }
       // check if the value is inside of the deadband range
       if (drivetrainRightSideSpeed < 0.001 && drivetrainRightSideSpeed > -0.001) {
-        // check if the right motor has already been stopped
+        // check if the right side of the drivetrain has already been stopped
         if (DrivetrainRNeedsToBeStopped_Controller1) {
-          // stop the right drive motor
+          // stop the right side of the drivetrain
           RightDriveSmart.stop();
-          // tell the code that the right motor has been stopped
+          // tell the code that the right side of the drivetrain has been stopped
           DrivetrainRNeedsToBeStopped_Controller1 = false;
         }
       } else {
-        // reset the toggle so that the deadband code knows to stop the right motor next time the input is in the deadband range
+        // reset the toggle so that the deadband code knows to stop the right side of the drivetrain next time the input is in the deadband range
         DrivetrainRNeedsToBeStopped_Controller1 = true;
       }
       
-      // only tell the left drive motor to spin if the values are not in the deadband range
+      // only tell the left side of the drivetrain to spin if the values are not in the deadband range
       if (DrivetrainLNeedsToBeStopped_Controller1) {
-         
         LeftDriveSmart.setVelocity(drivetrainLeftSideSpeed, percent);
         LeftDriveSmart.spin(forward);
       }
-      // only tell the right drive motor to spin if the values are not in the deadband range
+      // only tell the right side of the drivetrain to spin if the values are not in the deadband range
       if (DrivetrainRNeedsToBeStopped_Controller1) {
-        
+    
         RightDriveSmart.setVelocity(drivetrainRightSideSpeed, percent);
         RightDriveSmart.spin(reverse);
       }
 
+      // slow down the drivetrain when button up is pressed for higher accuracy when aiming for the goal
       if(Controller1.ButtonUp.pressing()) {
         LeftDriveSmart.setVelocity((drivetrainLeftSideSpeed * 0.25), percent);
         LeftDriveSmart.spin(forward);
@@ -136,39 +124,6 @@ int rc_auto_loop_function_Controller1() {
 
 // Motor coast code
 Drivetrain.setStopping(brakeType::coast);
-
-/* // Slow down macro
-bool UpbuttonPressed = false;
-bool DownbuttonPressed = false;
-if(Controller1.ButtonDown.pressing()) {
-  if(UpbuttonPressed == true){
-    UpbuttonPressed = false;
-    } else {
-        UpbuttonPressed = true;
-        }
-      }
-if(Controller1.ButtonUp.pressing()) {
-  if(DownbuttonPressed == true) {
-    DownbuttonPressed = false;
-    } else {
-        DownbuttonPressed = true;
-        }
-      }
-if(DownbuttonPressed == true) {
-  LeftDriveSmart.setVelocity(100, pct);
-  RightDriveSmart.setVelocity(100, pct);
-  } else {
-      LeftDriveSmart.setVelocity(10, pct);
-      RightDriveSmart.setVelocity(10, pct);
-  }
-if(UpbuttonPressed == true){
-  LeftDriveSmart.setVelocity(10, pct);
-  RightDriveSmart.setVelocity(10, pct);
-    } else {
-      LeftDriveSmart.setVelocity(100, pct);
-      RightDriveSmart.setVelocity(100, pct);
-    }
-    */
 
 // Auton test
 // Left side auton
@@ -236,6 +191,8 @@ if(Controller1.ButtonDown.pressing()) {
 /*----------------------------------------------------------------------------*/
 
 // DISPLAY
+// Description: Displays Flywheel status - checking to see if the RPM of the flywheel hits 80% or higher, and then displays "Flywheel READY" or "Flywheel NOT ready".
+// Also checks for battery status for informational purposes.
   Controller1.Screen.clearScreen();
   Controller1.Screen.setCursor(1, 1);
   if (Motor7.velocity(pct) > 80) {
@@ -257,6 +214,7 @@ if(Controller1.ButtonDown.pressing()) {
   }
 
 // VIBRATE
+// Description: Sets the controller to vibrate when the RPM of the flywheel hits higher than 80%.
 if (Motor7.velocity(pct) > 80) {
   Controller1.rumble("--");
 }
@@ -266,6 +224,8 @@ if (Motor7.velocity(pct) > 80) {
 /*----------------------------------------------------------------------------*/
 
 // INTAKE + ROLLER MECH
+// Description: One motor controls the intake, which will get discs from the field and it also controls the roller mechanism, which is used for the rollers on the side of the field for extra points.
+// Two booleans are used for buttons L1 and L2. Button L1 will spin the motor forward and Button L2 will spin the motor in a reverse direction.
 bool L1buttonPressed = false;
 bool L2buttonPressed = false;
 Motor6.setVelocity(100, pct);
@@ -292,7 +252,8 @@ if(L1buttonPressed == true){
   Motor6.spin(reverse);
     }
 
-// PISTON
+// PISTON (#1)
+// Description: This is used as our indexer; it will push the discs from the intake down so the flywheel can efficiently grab them and shoot them out of the robot.
 if (Controller1.ButtonX.pressing()){
       Piston1.open();
       Motor6.spin(forward);
@@ -302,6 +263,7 @@ if (Controller1.ButtonX.pressing()){
     }
 
 // FLYWHEEL
+// Description: This will launch the disc out of the robot into the goal.
 Motor7.setVelocity(-100, pct);
 if(Controller1.ButtonR1.pressing()){
   Motor7.spin(forward);
@@ -311,6 +273,7 @@ if(Controller1.ButtonR2.pressing()){
   }
 
 // ENDGAME MECH
+// Description: This is used for our endgame mechanism. 
 if(Controller1.ButtonLeft.pressing()){
   Piston2.open();
 }
