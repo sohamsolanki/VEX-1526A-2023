@@ -44,14 +44,6 @@ void pre_auton(void) {
   // Example: clearing encoders, setting servo positions, ...
 }
 void autonomous(void) {
-  Drivetrain.setDriveVelocity(500, rpm);
-  Motor6.setVelocity(500, rpm);
-  Drivetrain.driveFor(reverse, 100, mm);
-  Motor6.spin(reverse);
-  wait(0.6,sec);
-  Motor6.stop();
-  // Drivetrain.driveFor(reverse, 200, mm);
-
 }
 
 /*----------------------------------------------------------------------------*/
