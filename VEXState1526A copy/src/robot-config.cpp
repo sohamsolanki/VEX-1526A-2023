@@ -148,9 +148,9 @@ if(Controller1.ButtonUp.pressing()) {
         }
       }
 if(DownbuttonPressed == true) {
-  Motor6.spin(forward);
+  Drivetrain.setDriveVelocity(100, pct);
   } else {
-      Drivetrain.setDriveVelocity(100, pct);
+      Drivetrain.setDriveVelocity(10, pct);
   }
 if(UpbuttonPressed == true){
   Drivetrain.setDriveVelocity(10, pct);
