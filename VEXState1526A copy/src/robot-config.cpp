@@ -66,8 +66,9 @@ int rc_auto_loop_function_Controller1() {
       // calculate the drivetrain motor velocities from the controller joystick axies
       // left = Axis3 + Axis1
       // right = Axis3 - Axis1
-      int drivetrainLeftSideSpeed = Controller1.Axis3.position() + Controller1.Axis1.position()*0.33;
-      int drivetrainRightSideSpeed = Controller1.Axis3.position() - Controller1.Axis1.position()*0.33;
+      double slowVelocity = 1;
+      int drivetrainLeftSideSpeed = (Controller1.Axis3.position() + Controller1.Axis1.position()*0.33) * slowVelocity;
+      int drivetrainRightSideSpeed = (Controller1.Axis3.position() - Controller1.Axis1.position()*0.33) * slowVelocity;
       //rohit code
       // int drivetrainLeftSideSpeed = Controller1.Axis3.position()*0.88;
       // int drivetrainRightSideSpeed = Controller1.Axis2.position();
@@ -81,7 +82,9 @@ int rc_auto_loop_function_Controller1() {
         drivetrainRightSideSpeed = drivetrainRightSideSpeed * 0.75;
         }
        */  
-      
+      if (Controller1.ButtonUp.pressing()) {
+        double slowVelocity = 0.25;
+      }
       // check if the value is inside of the deadband range
       if (drivetrainLeftSideSpeed < 0.001 && drivetrainLeftSideSpeed > 0.001) {
         // check if the left motor has already been stopped
@@ -130,7 +133,7 @@ int rc_auto_loop_function_Controller1() {
 // Motor coast code
 Drivetrain.setStopping(brakeType::coast);
   
-// Slow down macro
+/* // Slow down macro
 bool UpbuttonPressed = false;
 bool DownbuttonPressed = false;
 if(Controller1.ButtonDown.pressing()) {
@@ -161,6 +164,7 @@ if(UpbuttonPressed == true){
       LeftDriveSmart.setVelocity(100, pct);
       RightDriveSmart.setVelocity(100, pct);
     }
+    */
 
 // Auton test
 // Left side auton
