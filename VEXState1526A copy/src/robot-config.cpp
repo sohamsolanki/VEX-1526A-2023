@@ -121,10 +121,12 @@ int rc_auto_loop_function_Controller1() {
         RightDriveSmart.setVelocity(drivetrainRightSideSpeed, percent);
         RightDriveSmart.spin(reverse);
       }
-      
+
       if(Controller1.ButtonUp.pressing()) {
         LeftDriveSmart.setVelocity((drivetrainLeftSideSpeed * 0.25), percent);
+        LeftDriveSmart.spin(forward);
         RightDriveSmart.setVelocity((drivetrainRightSideSpeed * 0.25), percent);
+        RightDriveSmart.spin(reverse);
       }
     }
 
