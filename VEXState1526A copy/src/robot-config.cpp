@@ -134,7 +134,7 @@ Drivetrain.setStopping(brakeType::coast);
 bool UpbuttonPressed = false;
 bool DownbuttonPressed = false;
 Drivetrain.setDriveVelocity(100, pct);
-if(Controller1.ButtonL1.pressing()) {
+if(Controller1.ButtonDown.pressing()) {
   if(UpbuttonPressed == true){
     UpbuttonPressed = false;
     } else {
